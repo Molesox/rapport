@@ -1,0 +1,53 @@
+\documentclass[a4paper, 12pt]{report}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[]{geometry}
+\addtolength{\textwidth}{1.0cm}
+\usepackage{newtxtext, newtxmath}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+\usepackage{color}
+\definecolor{RoyalRed}{RGB}{157,16, 45}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\color{RoyalRed} CHAPITRE \thechapter}
+\lhead{\rightmark}
+\rfoot{\thepage}
+
+
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\vspace*{-5cm}\normalsize \huge  \color{black}}%
+  {\flushright\normalsize \color{RoyalRed}%
+   \MakeUppercase{\chaptertitlename}\hspace{1ex}%
+   {\fontsize{60}{60}\selectfont\thechapter}}%
+  {1 pt}%
+  {\bfseries\huge}%
+  [\vspace*{-1.5cm}]%
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+
+\begin{document}
+
+\input{title.tex}
+
+\tableofcontents
+
+\input{chapitres/chap_01}
+\input{chapitres/chap_02}
+\input{chapitres/chap_03}
+\input{chapitres/chap_04}
+\input{chapitres/chap_05}
+\input{chapitres/chap_06}
+
+\end{document}
