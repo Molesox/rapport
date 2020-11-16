@@ -9,9 +9,10 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
+\usepackage{tikz}
 
 \usepackage{color}
-\definecolor{RoyalRed}{RGB}{157,16, 45}
+\definecolor{RoyalRed}{RGB}{255,165,0}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -34,8 +35,10 @@
   {\bfseries\huge}%
   [\vspace*{-1.5cm}]%
 
+\usepackage{parskip}%
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{\baselineskip}
+% \setlength{\parskip}{\baselineskip}
+\setlength{\headheight}{15pt}% ...at least 14.9...pt
 
 \begin{document}
 
@@ -43,11 +46,11 @@
 
 \tableofcontents
 
-\input{chapitres/chap_01}
-\input{chapitres/chap_02}
+% \input{chapitres/chap_01}
+% \input{chapitres/chap_02}
 \input{chapitres/chap_03}
-\input{chapitres/chap_04}
-\input{chapitres/chap_05}
-\input{chapitres/chap_06}
+% \input{chapitres/chap_04}
+% \input{chapitres/chap_05}
+% \input{chapitres/chap_06}
 
 \end{document}
