@@ -1,13 +1,13 @@
 \chapter[L'application]{Présentation de l'application}
 
 Dans ce chapitre on présente l'application Crazy wolf. 
-Au traver d'images commentées nous allons décrire plusieurs scénarios
-d'utilisation.
+Au traver d'images commentées nous allons décrire les scénarios
+d'utilisation les plus communs.
 \section[Authentification \& écran d'accueil - Scénario I]{Scénario I}
 \subsection*{Authentification \& écran d'accueil}
 Ici la serveuse Kim, qui n'a pas de privilèges, c'est-à-dire qu'elle n'est 
 ni manager ni administratice, se connecte et accède au premier écran possible.
-Puis elle, click sur "Mes services".
+Puis elle, click sur \textit{Mes services}.
 
 \begin{figure}[!h]
     \centering
@@ -49,14 +49,14 @@ sont pas affichés. Les horaires correspondant à la personne authentifié sont 
 
 Les services sont affichés sous forme de liste scrollable.
 
-On peut également naviguer à l'aide du menu inférieur à "mes services" où seuls les horaires du serveur authentifié sont affichés. Comme on le voit 
+On peut également naviguer à l'aide du menu inférieur à \textit{Mes services} où seuls les horaires du serveur authentifié sont affichés. Comme on le voit 
 dans \ref{fig:mesHoraires}
 
 \section[Mise en bourse d'un service - Scénario II]{Scénario II}
     \subsection*{Mise en bourse d'un service}
     Supposons que Kim, la serveuse authentifiée ne puisse pas travailler le 17 novembre.
     Elle souhaite donc se faire remplacer. Pour se faire, dans l'onglet 
-    "horaires", elle peut mettre son service en bourse en glissant le 
+    \textit{Horaires}, elle peut mettre son service en bourse en glissant le 
     service en question sur la gauche.
     \begin{figure}[!h]
         \centering
@@ -87,9 +87,9 @@ l'urgence requise à y répondre.
 Suit à ça, l'utilisatrice peut naviguer à l'aide du menu lateral \ref{fig:menu_sans_droits} où s'affichent les options
 de navigation suivante: 
 \begin{itemize}
-    \item Horaires: Pour aller à l'écran "Horaires" \ref{fig:horaires}
-    \item Logout: Pour se déconnecter, qui revoit à l'écran \ref{fig:login}
-    \item Bourse: Pour aller à l'écran bourse aux jobs \ref{fig:bourse}
+    \item Horaires: Pour aller à l'écran \textit{Horaires} \ref{fig:horaires}
+    \item Logout: Pour se déconnecter, qui renvoit à l'écran \ref{fig:login} d'authentification
+    \item Bourse: Pour aller à l'écran \textit{Bourse aux jobs} \ref{fig:bourse}
 \end{itemize}
 \begin{figure}[!h]
     \begin{subfigure}[]{.3\textwidth}
@@ -115,7 +115,7 @@ de navigation suivante:
     \label{fig:scen02b}
 \end{figure}
 
-Dans l'onglet "Bourse aux jobs" son service est disponible à toute personne souhaitant y postuler. 
+Dans l'onglet \textit{Bourse aux jobs} son service est disponible à toute personne souhaitant y postuler. 
 Cet onglet est partagé parmis tous les utilisateurs de l'application.
 
 La couleur représente le degré d'urgence. Ainsi la convention suivante est appliqué:
@@ -125,7 +125,7 @@ La couleur représente le degré d'urgence. Ainsi la convention suivante est app
     \item vert: implique une urgence basse.
 \end{itemize}
 
-L'onglet "Bourse aux jobs" affiche tous les service actuellement en bourse sous
+L'onglet \textit{Bourse aux jobs} affiche tous les service actuellement en bourse sous
 forme de liste scrollable. L'utilisateur ayant mis son service en bourse
 doit patienter à ce que quelqu'un y postule.
 
@@ -137,7 +137,7 @@ Les utilisateur sans privilèges sont authorisé à mettre un service en bourse 
     deux serveurs vont postuler au nouveau service mis
     en bourse. Leurs parcours étant identiques, nous allons en montrer qu'un.
     Supposons qu'ils se soient authentifié comme vu en \ref{fig:login} et qu'ils se trouvent
-    dans l'onglet "Bourse au jobs" \ref{fig:bourse}.
+    dans l'onglet \textit{Bourse au jobs} \ref{fig:bourse}.
 
     \begin{figure}[h]
         \centering
@@ -150,32 +150,40 @@ Les utilisateur sans privilèges sont authorisé à mettre un service en bourse 
     la gauche. À nouveau, si l'opération réussi, un snackbar apparaît pour l'indiquer.
 
     L'utilisateur ayant mis le service en bourse doit procéder à l'acceptation
-    d'un seul postulant. Dans "Bourse aux jobs" \ref{fig:bourse} les éléments de 
+    d'un seul postulant. Dans \textit{Bourse aux jobs} \ref{fig:bourse} les éléments de 
     la liste sont clickable. Lorsqu'un utilisateur click deux options sont possibles:
 
     \begin{figure}[!h]
         \centering
-        \begin{subfigure}{.45\textwidth}
+        \begin{subfigure}{.3\textwidth}
             \centering
-            \includegraphics[width=0.6\linewidth]{screenshots/scenario_03/detail_auth.png}
-            \caption{ayant mis le service en bourse}
+            \includegraphics[width=0.9\linewidth]{screenshots/scenario_03/detail_auth.png}
+            \caption{kim}
             \label{fig:detail_auth}
         \end{subfigure}
-        \begin{subfigure}{.45\textwidth}
+        \begin{subfigure}{.3\textwidth}
             \centering
-            \includegraphics[width=0.6\linewidth]{screenshots/scenario_03/detail_non_auth.png}
+            \includegraphics[width=0.9\linewidth]{screenshots/scenario_03/detail_non_auth.png}
             \caption{autre}
             \label{fig:detail_non_auth}
+        \end{subfigure}
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{screenshots/scenario_03/a_valider.png}
+            \caption{à valider}
+            \label{fig:a_valider}
         \end{subfigure}
         \caption{scénario III}
         \label{fig:scen03}
     \end{figure}
 
-    S'il s'agit de l'utilisateur ayant mis le service en bourse à l'occurence Kim, l'écran détails tel que \ref{fig:detail_auth} s'affiche.
-    S'il s'agit de n'importe quel autre utilisateur alors l'écran détails s'affiche comme dans \ref{fig:detail_non_auth}
+    S'il s'agit de l'utilisateur ayant mis le service en bourse à l'occurence Kim, l'écran \textit{Détails} tel que \ref{fig:detail_auth} s'affiche.
+    S'il s'agit de n'importe quel autre utilisateur alors l'écran \textit{Détails} s'affiche comme dans \ref{fig:detail_non_auth}
 
-    Ainsi, seul l'utilisateur ayant mis le service en bourse est en mesure d'accpter un ou une remplaçante. Pour se faire,
-    Kim doit appuyer sur le bouton accepter de la personne de son choix.
+    Ainsi, seul l'utilisateur ayant mis le service en bourse est en mesure d'accepter un ou une remplaçante. 
+    
+    Pour se faire, Kim doit appuyer sur le bouton \textit{accepter} de la personne de son choix. Une fois c'est fait, toutes les utilisateurs ayant droit sont notifié
+    et l'échange en attente de validation s'affiche dans \textit{Bourse aux jobs} \ref{fig:a_valider} en tant que tel.
 
 \section[Valider un échange - Scénario IV]{Scénario IV}
     \subsection*{Valider un échange}
@@ -195,4 +203,113 @@ Les utilisateur sans privilèges sont authorisé à mettre un service en bourse 
             \draw[color=RoyalRed] (0,2) circle (1.5cm);
         \end{tikzpicture}
     \end{center}
+
+    Les utilisateurs autres que \textit{normal} ont des privilèges.
+
+    \begin{itemize}
+        \item [Normal:] Peut demander un échange et accepter des postulants.
+        \item [Manager:] Peut valider un échange, créer des services et demander des doubleurs en renfort.
+        \item [Admin:] Peut ajouter de nouveaux serveurs. 
+    \end{itemize}
     
+    \newpage
+    Lorsque l'on click sur l'élément à valider \ref{fig:a_valider} deux options
+    sont possibles suivant si l'utilisateur authentifié \ref{fig:valider_manager} et \textit{manager/admin} ou bien 
+    s'il est \textit{normal} \ref{fig:attente_validation}.
+
+    \begin{figure}[!h]
+        \centering
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{screenshots/scenario_04/valider_manager.png}
+            \caption{manager / admin}
+            \label{fig:valider_manager}
+        \end{subfigure}
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{screenshots/scenario_04/en_attente_validation.png}
+            \caption{normal}
+            \label{fig:attente_validation}
+        \end{subfigure}
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{screenshots/scenario_04/validé.png}
+            \caption{Daniel: après validation}
+            \label{fig:validé}
+        \end{subfigure}
+        \caption{scénario IV}
+        \label{fig:scen04}
+    \end{figure}
+
+S'il s'agit d'un utilisateur avec privilèges, alors il a l'option de valider l'échange \ref{fig:valider_manager}. 
+
+Supposons que Daniel, qui est administrateur valide l'échange. Alors, l'écran \textit{Horaires} est modifié \ref{fig:validé}
+pour tout le monde et affiche que c'est bien Sara qui travail le 17 novembre et non plus Kim. 
+
+De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprimé.
+\newpage
+
+\section[Ajouter un service - Scénario V]{Scénario V}
+    \subsection*{Ajouter un service}
+    Afin de créer les horaires pour le personel, un manager ou administrateur doit créer des services. Supposons
+    que c'est Ari, une manager qui le fait. Après s'être authentifiée, elle peut à l'aide du menu lateral \ref{fig:menu_manager} naviguer
+    à \textit{Ajouter service} \ref{fig:ajout_service}
+
+    \begin{figure}[!h]
+        \centering
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{screenshots/scenario_05/menu_manager.png}
+            \caption{menu manager}
+            \label{fig:menu_manager}
+        \end{subfigure}
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{screenshots/scenario_05/ajout_service_a.png}
+            \caption{ajouter service}
+            \label{fig:ajout_service}
+        \end{subfigure}
+        \begin{subfigure}{.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{screenshots/scenario_05/ajout_service_b.png}
+            \caption{choix date}
+            \label{fig:choix_date}
+        \end{subfigure}
+        \caption{scénario V - a}
+        \label{fig:scen05a}
+    \end{figure}
+
+    Pour créer le service, il faut choisir:
+    \begin{itemize}
+        \item une date en appuyant sur \textit{Choisir une date} un popup avec le calendrier s'affiche \ref{fig:choix_date}.
+        \item un type en appuyant sur \textit{midi} ou \textit{soir} \ref{fig:ajout_service_c}. 
+        \item une ou plusieurs personnes au \textit{Service} \ref{fig:ajout_service_c}.
+        \item zero, une ou plusieurs personnes au \textit{Doublage} \ref{fig:ajout_service_c}.
+    \end{itemize}
+    \begin{figure}[!h]
+        \centering
+        \begin{subfigure}{.45\textwidth}
+            \centering
+            \includegraphics[width=0.6\linewidth]{screenshots/scenario_05/ajout_service_c.png}
+            \caption{choix du personel et type}
+            \label{fig:ajout_service_c}
+        \end{subfigure}
+        \begin{subfigure}{.45\textwidth}
+            \centering
+            \includegraphics[width=0.6\linewidth]{screenshots/scenario_05/ajout_service_done.png}
+            \caption{nouveau service créé}
+            \label{fig:ajout_service_done}
+        \end{subfigure}
+        \caption{scénario V - b}
+        \label{fig:scen05b}
+    \end{figure}
+
+    Dans notre exemple Ari choisit le 1er décembre au soir. Andrea au service et Daniel au doublage.
+
+    Un service ne peut pas avoir la même personne au doublage et au service. Un service peut ne pas avoir
+    de doubleurs. De plus, l'opération ajouter le service aux horaires qui se fait au moyen du bouton envoyer
+    dans le coin supérieur droit de la figure \ref{fig:ajout_service_c} retournera une erreur s'il existe un 
+    service du même type à la même date.
+
+\section[Ajouter un serveur - Scénario VI]{Scénario VI}
+    \subsection*{Ajouter un serveur}
