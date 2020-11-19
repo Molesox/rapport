@@ -212,7 +212,6 @@ Les utilisateur sans privilèges sont authorisé à mettre un service en bourse 
         \item [Admin:] Peut ajouter de nouveaux serveurs. 
     \end{itemize}
     
-    \newpage
     Lorsque l'on click sur l'élément à valider \ref{fig:a_valider} deux options
     sont possibles suivant si l'utilisateur authentifié \ref{fig:valider_manager} et \textit{manager/admin} ou bien 
     s'il est \textit{normal} \ref{fig:attente_validation}.
@@ -247,7 +246,6 @@ Supposons que Daniel, qui est administrateur valide l'échange. Alors, l'écran 
 pour tout le monde et affiche que c'est bien Sara qui travail le 17 novembre et non plus Kim. 
 
 De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprimé.
-\newpage
 
 \section[Ajouter un service - Scénario V]{Scénario V}
     \subsection*{Ajouter un service}
@@ -286,7 +284,16 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
         \item une ou plusieurs personnes au \textit{Service} \ref{fig:ajout_service_c}.
         \item zero, une ou plusieurs personnes au \textit{Doublage} \ref{fig:ajout_service_c}.
     \end{itemize}
-    \begin{figure}[!h]
+
+    Dans notre exemple Ari choisit le 1er décembre au soir. Andrea au service et Daniel au doublage.
+
+    Un service ne peut pas avoir la même personne au doublage et au service. Un service peut ne pas avoir
+    de doubleurs. De plus, l'opération ajouter le service aux horaires qui se fait au moyen du bouton envoyer
+    dans le coin supérieur droit de la figure \ref{fig:ajout_service_c} retournera une erreur s'il existe un 
+    service du même type à la même date.
+    \begin{center}
+        
+    \begin{figure}[h]
         \centering
         \begin{subfigure}{.45\textwidth}
             \centering
@@ -303,13 +310,95 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
         \caption{scénario V - b}
         \label{fig:scen05b}
     \end{figure}
-
-    Dans notre exemple Ari choisit le 1er décembre au soir. Andrea au service et Daniel au doublage.
-
-    Un service ne peut pas avoir la même personne au doublage et au service. Un service peut ne pas avoir
-    de doubleurs. De plus, l'opération ajouter le service aux horaires qui se fait au moyen du bouton envoyer
-    dans le coin supérieur droit de la figure \ref{fig:ajout_service_c} retournera une erreur s'il existe un 
-    service du même type à la même date.
+\end{center}
 
 \section[Ajouter un serveur - Scénario VI]{Scénario VI}
     \subsection*{Ajouter un serveur}
+    Les utilisateurs ayant les privilèges administrateur ont la capacité
+    d'ajouter de nouveaux serveurs.
+
+    \begin{figure}[!h]
+        \centering
+        \begin{subfigure}{.45\textwidth}
+            \centering
+            \includegraphics[width=0.6\linewidth]{screenshots/scenario_06/menu_admin.png}
+            \caption{menu admin}
+            \label{fig:menu_admin}
+        \end{subfigure}
+        \begin{subfigure}{.45\textwidth}
+            \centering
+            \includegraphics[width=0.6\linewidth]{screenshots/scenario_06/ajout_serveur.png}
+            \caption{ajouter serveur}
+            \label{fig:ajout_serveur}
+        \end{subfigure}
+        \caption{scénario VI}
+        \label{fig:scen06}
+    \end{figure}
+
+    Pour se faire, il doivent après s'être authentifié, naviguer à l'aide 
+    du menu latéral \ref{fig:menu_admin} à l'onglet \textit{Ajouter serveur}
+
+    Dans l'onglet \textit{Ajouter serveur} il faut remplir les champs définissant un serveurs. I.e. 
+    \begin{itemize}
+        \item Prénom
+        \item Nom 
+        \item Adresse mail
+        \item Mot de passe
+        \item Niveau de privilèges: administrateur, normal, manager. 
+    \end{itemize}
+
+    Le niveau de privilège le plus courant étant \textit{normal} il est déjà 
+    préselectionné.
+
+    Le mot de passe doit être strictement plus long que 6 caractères.
+
+    Utiliser la même adresse mail pour deux serveur différents est interdit. 
+    Cependant, deux serveurs peuvent théoriquement avoir le même prénom et le même nom de 
+    famille.
+
+    Un fois tous les champs remplis, l'administrateur peut ajouter le serveur
+    dans le système en appuyant sur le bouton \textit{+} dans le coin inférieur
+    gauche de l'écran \textit{Ajouter serveur} \ref{fig:ajout_serveur}
+
+    \section[Doublages - Scénario VII]{Scénario VII}
+        \subsection*{Doublages}
+        Ici on va voir comment un administrateur ou bien un manager peut demander
+        du personnel supplémentaire pour un service. Ces personnes supplémentaires sont dites 
+        doubleurs et font un doublage.
+
+        La démarche est similaire à celle d'un échange.
+
+        \begin{figure}[!h]
+            \centering
+            \begin{subfigure}{.3\textwidth}
+                \centering
+                \includegraphics[width=0.9\linewidth]{screenshots/scenario_07/horaire_doublage.png}
+                \caption{demande doublage}
+                \label{fig:ask_doublage}
+            \end{subfigure}
+            \begin{subfigure}{.3\textwidth}
+                \centering
+                \includegraphics[width=0.9\linewidth]{screenshots/scenario_07/doublage_ou_remplacement.png}
+                \caption{remplacement ou doublage}
+                \label{fig:ask_doublage_or_remplacement}
+            \end{subfigure}
+            \begin{subfigure}{.3\textwidth}
+                \centering
+                \includegraphics[width=0.9\linewidth]{screenshots/scenario_07/bourse_doublage.png}
+                \caption{bourse doublage}
+                \label{fig:bourse_doublage}
+            \end{subfigure}
+            \caption{scénario VII}
+            \label{fig:scen07}
+        \end{figure}
+
+        Dans un premier temps un utilisateur avec privilèges fait glisser un sérvice 
+        sur la gauche. Deux options sont possibles:
+        \begin{itemize}
+            \item Si l'utilisateur travaille dans le service en question alors un popup apparaît pour demander si c'est bien une demande de doublage ou bien se faire remplacer
+            \item Si l'utilisateur ne travaille pas dans le service en question alors la demande de doublage est directement envoyée en bourse.
+        \end{itemize}
+
+
+
+

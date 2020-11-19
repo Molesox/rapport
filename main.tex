@@ -3,6 +3,12 @@
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[]{geometry}
+\geometry{
+ a4paper,
+ total={170mm,250mm},
+ left=20mm,
+ top=30mm,
+ }
 \addtolength{\textwidth}{1.0cm}
 \usepackage{newtxtext, newtxmath}
 \usepackage{graphicx}
@@ -27,18 +33,17 @@
 
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
-  {\vspace*{-5cm}\normalsize \huge  \color{black}}%
+{\vspace*{-5cm}\normalsize \huge  \color{black}}%
   {\flushright\normalsize \color{RoyalRed}%
    \MakeUppercase{\chaptertitlename}\hspace{1ex}%
    {\fontsize{60}{60}\selectfont\thechapter}}%
   {1 pt}%
   {\bfseries\huge}%
-  [\vspace*{-1.5cm}]%
+  [\vspace*{-1.0cm}]%
 
 \usepackage{parskip}%
 \setlength{\parindent}{0pt}
 % \setlength{\parskip}{\baselineskip}
-\setlength{\headheight}{15pt}% ...at least 14.9...pt
 
 \begin{document}
 
