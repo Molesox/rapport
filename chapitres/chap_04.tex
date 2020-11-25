@@ -1,20 +1,98 @@
 
-\chapter[Programmation]{Elements de programmation}
+\chapter[Programmation]{Implémentation}
+    Dans ce chapitre sont présentés les aspects liés à l'implémentation
+    informatique de l'application. Seuls les points clefs seront mis en exergue, ainsi 
+    une fois présenté un certain aspect, toutes ses apparitions disséminée dans le code
+    ne seront pas énumérées. 
 
     \section{Choix des téchnologies}
+    Le développement d'appications
+    pour smartphone est depuis un décénie en pleine efervesence et il existe par 
+    conséquent une multitude de frameworks, services, langages, méthodologies et paradigmes liés à leur
+    développement.
+
+    Ces téchnologies, aux noms éxotiques, aux logos plus brillants les uns que les autres et leurs 
+    promotions par diverses conférences, font que leurs différences relèvent plus
+    d'une stratégie marketing, visant les informaticiens, réussie que des attributs
+    intrinsèques de la téchnologie en question. 
+
+    L'application étant d'une compléxité modérée et ne demandant pas de resource importantes
+    comme tel pourrait être le cas pour une messagerie instantanée à grand échelle ou une application
+    utilisant abondament un domaine spécifique de connaissance comme le machine learning, le traitement d'images, les jeux vidéos, etc.
+    Exclu de facto le choix d'une téchnologie basée exclusivement sur les performances ou sur le développement natif.
+
+    N'ayant jamais fait cela auparavant, il n'y a aucune préférence de ma part pour telle ou telle téchnologie.
+
+    Ces constats donnent lieu aux critères de selections suivants:
+    \smallskip
+    \begin{itemize}
+        \item Développement cross-platteform
+        \item Simplicité
+        \item Apprentissage d'un langage plutôt qu'une multitude
+        \item Vaste documentation et ressources d'apprentissage
+    \end{itemize}
+    \smallskip
+    Le premier critères est celui qui réduit le plus la liste des possibilités. En effet, les frameworks 
+    permetant le développement d'applications pour Android et IOS ne se comptent pas en grand nombre. Il existe:
+    \smallskip
+    \begin{itemize}
+        \item Xamarin - Microsoft
+        \item React Native - Facebook
+        \item Flutter - Google
+        \item Adobe PhoneGap - Adobe
+        \item Ionic - MIT
+    \end{itemize}
+    \smallskip
+    Le choix parmis ces possibilités découle essentiellement de l'arbitraire. Toutefois, Ionic à été exclu
+    car il est nécessaire de maitriser HTML5 et par conséquent CSS mais encore Angular JS. Ce qui contredit le 3ème critère.
+
+    React native a été exclu pour des raisons similaires. I.e. l'apprentissage de divers langage.
+
+    Finalement, suite à un cours de Academind d'une durée de 40 heures portant sur les aspects les
+    plus basiques du développement jusqu'au déployement de l'application en passant par le routage, la gestion de requettes http,
+    la connexion à tout un écosistème de bases de données, l'utilisation de camera et géolocalisation, et même sur 
+    comment changer le logo de l'application, le choix c'est porté sur Flutter.
+
+    Flutter est un framework crée par Google. Ce dernier offre pour les application le service Firebase qui englobe :
+    \smallskip
+    \begin{itemize}
+        \item Cloud Firestore
+        \item Real time database
+        \item Functions
+        \item Machine learning
+        \item Cloud messaging
+        \item \dots
+    \end{itemize}
+    \smallskip
+    Firebase s'intègre, par conception, particulièrement bien et facilement à Flutter. Même s'ils sont
+    indépendants leur utilisation conjointe forme un seul écosistème plus facile à apréhender. Ainsi pour la 
+    base de données, le choix à été la Real time database. Car cette dernière fournit une API REST.
+
+    De plus, toujours dans cet ecosystème, Cloud messaging est utilisé pour l'envoit des notifications et Functions pour 
+    effectuer des actions côté serveur lorsque la base de donnée subie des modifications. 
+    
+    \section{Flutter}
+
+    \subsection{Les widgets}
+
+    \subsection{Flux des données}
+
+        \subsubsection{Par constructeur}
+
+        \subsubsection{Provider \& Consumer}
+
 
     \section{La base de données}
         \subsection{La méthodologie REST}
         \subsection{REST appliqué à Dart}
 
-    \section{Flutter}
-        \subsection{Les widgets}
-        \subsection{Flux des données}
-            \subsubsection{Par constructeur}
-            \subsubsection{Provider \& Consumer}
             
     \section{Notifications}
+
+
     
     \section{Sécurité}
+
         \subsection{Authentification}
+
         \subsection{Firebase rules}
