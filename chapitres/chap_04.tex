@@ -70,8 +70,37 @@
 
     De plus, toujours dans cet ecosystème, Cloud messaging est utilisé pour l'envoit des notifications et Functions pour 
     effectuer des actions côté serveur lorsque la base de donnée subie des modifications. 
-    
+
     \section{Flutter}
+    Flutter est un software developpement kit (SDK) développé par Google permettant de concevoir
+    des applications pour plusieur plateformes. Notament, Android et IOS entre autres avec un seul code source.
+
+    Le framework a une architecture avec plusieurs éléments dont 3 sont pertienents pour ce projet:
+    \smallskip
+    \begin{itemize}
+        \item La plateform Dart
+        \item La bibliothèque Fundation
+        \item Des widgets spécifiques
+    \end{itemize}
+    \smallskip
+    \subsection*{Dart}
+    Dart est le langage de programmation avec lequel certains éléments du framework on été développé mais il s'agit
+    surtout du langage dans lequel on implemente une application en Flutter. 
+
+    C'est un langage orienté objet avec un syntaxe de type C à l'image d'autres langages comme Java ou C++.
+    Sa syntaxe est proche du Java. 
+    
+    Il partage certaines fonctionalités propres au langages fonctionnels. Notament, l'inférence de type ou encore
+    certaines fonctionalités comme les map, functors \dots
+
+    En Dart, l'allocation de mémoire est gérée automatiquement par un garbage collector. 
+
+    Voici un exemple minimal d'un hello world en Dart:
+
+    \begin{minted}{dart}
+        void main() => print('Hello, World!');
+    \end{minted}
+
 
     \subsection{Les widgets}
 
