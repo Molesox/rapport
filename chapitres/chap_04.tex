@@ -5,35 +5,35 @@
     une fois présenté un certain aspect, toutes ses apparitions disséminée dans le code
     ne seront pas énumérées. 
 
-    \section{Choix des téchnologies}
-    Le développement d'appications
-    pour smartphone est depuis un décénie en pleine efervesence et il existe par 
-    conséquent une multitude de frameworks, services, langages, méthodologies et paradigmes liés à leur
+    \section{Choix des technologies}
+    Le développement d'applications
+    pour smartphones est depuis un peu plus d'une décennie en pleine effervescence et il existe, par 
+    conséquent, une multitude de frameworks, services, langages, méthodologies et paradigmes liés à leur
     développement.
 
-    Ces téchnologies, aux noms éxotiques, aux logos plus brillants les uns que les autres et leurs 
+    Ces technologies, aux noms exotiques, aux logos plus brillants les uns que les autres et leurs 
     promotions par diverses conférences, font que leurs différences relèvent plus
     d'une stratégie marketing, visant les informaticiens, réussie que des attributs
-    intrinsèques de la téchnologie en question. 
+    intrinsèques de la technologie en question. 
 
-    L'application étant d'une compléxité modérée et ne demandant pas de resource importantes
+    L'application étant d'une complexité modérée et ne demandant pas de ressources importantes
     comme tel pourrait être le cas pour une messagerie instantanée à grand échelle ou une application
-    utilisant abondament un domaine spécifique de connaissance comme le machine learning, le traitement d'images, les jeux vidéos, etc.
-    Exclu de facto le choix d'une téchnologie basée exclusivement sur les performances ou sur le développement natif.
+    utilisant abondamment un domaine spécifique de connaissance comme le machine learning, le traitement d'images, les jeux vidéos, etc.
+    Exclu \textit{de facto} le choix d'une technologie basée exclusivement sur les performances ou sur le développement natif.
 
-    N'ayant jamais fait cela auparavant, il n'y a aucune préférence de ma part pour telle ou telle téchnologie.
+    N'ayant jamais fait cela auparavant, il n'y a aucune préférence de ma part pour telle ou telle technologie.
 
-    Ces constats donnent lieu aux critères de selections suivants:
+    Ces constats donnent lieu aux critères de sélection suivants:
     \smallskip
     \begin{itemize}
-        \item Développement cross-platteform
+        \item Développement cross-plateforme
         \item Simplicité
         \item Apprentissage d'un langage plutôt qu'une multitude
         \item Vaste documentation et ressources d'apprentissage
     \end{itemize}
     \smallskip
     Le premier critères est celui qui réduit le plus la liste des possibilités. En effet, les frameworks 
-    permetant le développement d'applications pour Android et IOS ne se comptent pas en grand nombre. Il existe:
+    permettant le développement d'applications pour Android et IOS ne se comptent pas en grand nombre. Il existe:
     \smallskip
     \begin{itemize}
         \item Xamarin - Microsoft
@@ -43,14 +43,14 @@
         \item Ionic - MIT
     \end{itemize}
     \smallskip
-    Le choix parmis ces possibilités découle essentiellement de l'arbitraire. Toutefois, Ionic à été exclu
-    car il est nécessaire de maitriser HTML5 et par conséquent CSS mais encore Angular JS. Ce qui contredit le 3ème critère.
+    Le choix parmi ces possibilités découle essentiellement de l'arbitraire. Toutefois, Ionic à été exclu
+    car il est nécessaire de maîtriser HTML5 et par conséquent CSS mais encore Angular JS. Ce qui contredit le 3ème critère.
 
     React native a été exclu pour des raisons similaires. I.e. l'apprentissage de divers langage.
 
     Finalement, suite à un cours de Academind d'une durée de 40 heures portant sur les aspects les
-    plus basiques du développement jusqu'au déployement de l'application en passant par le routage, la gestion de requettes http,
-    la connexion à tout un écosistème de bases de données, l'utilisation de camera et géolocalisation, et même sur 
+    plus basiques du développement jusqu'au déploiement de l'application en passant par le routage, la gestion de requêtes http,
+    la connexion à tout un écosystème de bases de données, l'utilisation de caméra et géolocalisation, et même sur 
     comment changer le logo de l'application, le choix c'est porté sur Flutter.
 
     Flutter est un framework crée par Google. Ce dernier offre pour les application le service Firebase qui englobe :
@@ -65,33 +65,33 @@
     \end{itemize}
     \smallskip
     Firebase s'intègre, par conception, particulièrement bien et facilement à Flutter. Même s'ils sont
-    indépendants leur utilisation conjointe forme un seul écosistème plus facile à apréhender. Ainsi pour la 
+    indépendants leur utilisation conjointe forme un seul écosystème plus facile à appréhender. Ainsi pour la 
     base de données, le choix à été la Real time database. Car cette dernière fournit une API REST.
 
-    De plus, toujours dans cet ecosystème, Cloud messaging est utilisé pour l'envoit des notifications et Functions pour 
+    De plus, toujours dans cet ecosystème, Cloud messaging est utilisé pour l'envoi des notifications et Functions pour 
     effectuer des actions côté serveur lorsque la base de donnée subie des modifications. 
 
     \section{Flutter}
-    Flutter est un software developpement kit (SDK) développé par Google permettant de concevoir
-    des applications pour plusieur plateformes. Notament, Android et IOS entre autres avec un seul code source.
+    Flutter est un software développement kit (SDK) développé par Google permettant de concevoir
+    des applications pour plusieurs plateformes. Notament, Android et IOS entre autres avec un seul code source.
 
-    Le framework a une architecture avec plusieurs éléments dont 3 sont pertienents pour ce projet:
+    Le framework a une architecture avec plusieurs éléments dont 3 sont pertinents pour ce projet:
     \smallskip
     \begin{itemize}
-        \item La plateform Dart
+        \item La plateforme Dart
         \item La bibliothèque Fundation
         \item Des widgets spécifiques
     \end{itemize}
     \smallskip
     \subsection*{Dart}
     Dart est le langage de programmation avec lequel certains éléments du framework on été développé mais il s'agit
-    surtout du langage dans lequel on implemente une application en Flutter. 
+    surtout du langage dans lequel on implémente une application en Flutter. 
 
     C'est un langage orienté objet avec un syntaxe de type C à l'image d'autres langages comme Java ou C++.
     Sa syntaxe est proche du Java. 
     
-    Il partage certaines fonctionalités propres au langages fonctionnels. Notament, l'inférence de type ou encore
-    certaines fonctionalités comme les map, functors \dots
+    Il partage certaines fonctionnalités propres au langages fonctionnels. Notamment, l'inférence de type ou encore
+    certaines fonctionnalités comme les map, functors \dots
 
     En Dart, l'allocation de mémoire est gérée automatiquement par un garbage collector. 
 
