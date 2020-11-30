@@ -210,22 +210,19 @@
     \begin{listing}[h]
         \begin{minted}{dart}
 class ScreenHoraire extends StatefulWidget {
-    static const routName = "/horaires";
+    static const routeName = "/horaires";
     @override
     _ScreenHoraireState createState() => _ScreenHoraireState();}
 
 class _ScreenHoraireState extends State<ScreenHoraire> {
-    int _selectedIndex = 1;
-    DateTime _selectedDate = DateTime.now();
-
+    int _selectedIndex = 1; //...
     void _onItemTapped(int index) {setState(() {_selectedIndex = index;});}
         \end{minted}
     \caption{Screen Horaires}
     \label{code:screenHoraires}
     \end{listing}
     
-    L'écran \textit{Horaire} hérite d'un \textit{StatefulWidget}. Dans la classe d'état il y a deux attributs: \textit{selectedIndex} et \textit{selectedDate}.
-    Seul le premier est pertinent pour l'exemple. L'indice selectionné a pour valeur 1. 
+    L'écran \textit{Horaire} hérite d'un \textit{StatefulWidget}. Dans la classe d'état il y a l'attribut: \textit{selectedIndex}. L'indice selectionné a pour valeur 1. 
     Si la fonction \textit{onItemTapped(int index)} est appellée avec un entier en argument alors, à l'aide de la fonction \textit{setState} l'état est modifié
     et la fonction \textit{build()} de \textit{ScreenHoraireState} est appelée.
 
@@ -249,14 +246,54 @@ Widget build(BuildContext context) {//...
     Scaffold accepte un menu de navigation au bas de la page. Celui-ci est un widget: \textit{BottomNavigationBar}. Ce widget prend en construction
     une fonction qui est appelée lorsque une tap a été detecté sur l'un des deux icons définis dans la liste \textit{Items} ainsi que l'index actuellement 
     selectionné. Le premier élément de la liste i.e. "Mes services" a pour index 0. Et "Tous les horaires" 1. Par défaut, \textit{selectedIndex} vaut 1. C'est donc tous les 
-    horaires qui sont affiché. Lorsque l'utilisateur clic su l'icon de la personne, \textit{BottomNavigationBar} va appeler la fonction \textit{onItemTapped} définie dans le code \ref{code:screenHoraires} avec
+    horaires qui sont affiché.
+    
+    Lorsque l'utilisateur clic su l'icon de la personne, \textit{BottomNavigationBar} va appeler la fonction \textit{onItemTapped} définie dans le code \ref{code:screenHoraires} avec
     l'index de l'icon en argument. \textit{onItemTapped} va changer l'état du widget et par extension la valeur de \textit{selectedIndex}. L'état ayant changer la fonction
-    \textit{build} est appelée et donc \textit{BottomNavigationBar} redessiné avec un \textit{currentIndex} potentiellement différent. 
+    \textit{build} est appelée et donc \textit{BottomNavigationBar} redessiné avec un \textit{currentIndex} potentiellement différent. Traduisant ainsi 
+    un affichage différent et l'icon séléctionné apparaitrai en orange. 
 
-    \subsection{Flux des données}
+    \subsection{Flux de données}
+    Dans la partie précédente on constate que la gestion de l'état des widgets peut vite devenir encombrante. En effet, dans l'exemple,
+    l'utilisation d'un \textit{StatefulWidget} est naturelle, l'information étant un index n'est ni complexe ni lourde. Or comment, partager des 
+    données complexes entre les différents widgets?
 
+    En général on fait la distinction entre l'état éphémère et l'état de l'application.
+    \smallskip
+    \begin{itemize}
+        \item L'état éphémère est celui qui peut entièrement être définit au sein d'un widget. Il n'a pas ou peu besoin d'être
+        accédé à l'exterieur du widget et il ne varie pas de façon complexe.
+        \item L'état de l'application est celui qui à l'inverse, peu se modifier de façon complexe, doit être préservé lorsque l'application est fermée, 
+        contient de vastes informations et doit être partagé parmi divers widgets. Comme par exemple, la liste des serveurs, la liste des services, les 
+        donnée d'authentification~\dots
+    \end{itemize}
+
+    Il existe de nombreuse técniques pour la gestion du flux de données dans les applications et en informatique en générale. Pour cette application, 3 façons
+    on été utilisées. 
+    
+    Pour transmettre les données d'un widget à ses enfants soit la transmission s'est faite par constructeur qui est classique dans les langages orientés 
+    objets soit à l'aide des patterns Provider et Consumer.
+
+    Pour transmettre les données d'un enfant à un parent, les callback on été utilisés.
         \subsubsection{Par constructeur}
+        Il s'agit à la fois de la méthode la plus répandue comme la plus simple. Voici un exemple où le parent 
+            \begin{listing}[h]
+                \begin{minted}{dart}
+class HoraireSubItem extends StatelessWidget {
+    const HoraireSubItem({//...,
+     @required this.isUserIn,}): super(key: key);
+    //...
+    final bool isUserIn;
 
+    @override
+    Widget build(BuildContext context) {
+        return Card(
+        color: isUserIn ? Colors.orangeAccent : Colors.white,
+        //...
+                \end{minted}
+            \caption{par constructeur}
+            \label{code:horaireSubItem}
+            \end{listing}
         \subsubsection{Provider \& Consumer}
 
 
