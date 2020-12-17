@@ -86,6 +86,8 @@ dans \ref{fig:mesHoraires}
 Une fois le glissement effectué un popup est s'affiche \ref{fig:urgence} demandant
 à quel point le remplacement est urgent. Une fois que l'utilisateur à répondu, le service est mis
 en bourse. Un snakbar \footnote{Petite notification informative qui émerge dans la partie inférieur d'un écran} s'affiche pour le notifier que l'action à réussi.
+Si l'action venait à échouer par exemple à cause d'une déconexion à internet ou car le service se trouve déjà en bourse, un snackbar avec un message 
+d'erreur pertinent s'afficherait également.
 
 Si l'action est réussie, tous les utilisateurs de l'application sont notifiés \ref{fig:notif} comme quoi un 
 nouveau service est disponible. La notification informe sur la disponibilité d'un service ainsi que 
@@ -152,7 +154,8 @@ Les utilisateurs sans privilèges sont autorisé à mettre un service en bourse 
     \end{figure}
     \vfill
     Alors, ils peuvent glisser le service auquel ils souhaitent postuler sur
-    la gauche \ref{fig:postuler}. À nouveau, si l'opération réussi, un snackbar apparaît pour l'indiquer.
+    la gauche \ref{fig:postuler}. À nouveau, si l'opération réussi, un snackbar apparaît pour l'indiquer. Si au contraire, une
+    erreur se produit, notamment car l'utilisateur à déjà postulé ou une erreur de connection, un snackbar pertinent s'affiche aussi.
     \newpage
     L'utilisateur ayant mis le service en bourse doit procéder à l'acceptation
     d'un seul postulant. Dans \textit{Bourse aux jobs} \ref{fig:bourse} les éléments de 

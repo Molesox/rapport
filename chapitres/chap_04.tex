@@ -1,146 +1,146 @@
 
 \chapter[Eléments de programmation]{Eléments de programmation}
-    Dans ce chapitre sont présentés les técnologies, paradigmes et técniques liés à l'implémentation
-    informatique de l'application. Notamment, lesquelles ont été utilisées, comment elles fonctionnent et, une à une, comment cela 
-    c'est traduit dans l'implémentation final de l'application. Les exemples de codes sont tirés de l'application.
+Dans ce chapitre sont présentés les technologies, paradigmes
+et techniques liés à l'implémentation informatique de
+l'application. Notamment, lesquelles ont été utilisées,
+comment elles fonctionnent et, une à une, comment cela
+s’est traduit dans l'implémentation final de l'application.
+Les exemples de codes sont tirés de l'application.
 
-    \section{Choix des technologies}
-    Le développement d'applications
-    pour smartphones est depuis un peu plus d'une décennie en pleine effervescence. Il existe, par 
-    conséquent, une multitude de frameworks, services, langages, méthodologies et paradigmes liés à leur
-    développement.
+\section{Choix des technologies}
+Le développement d'applications
+pour smartphones est depuis un peu plus d'une décennie en pleine effervescence. Il existe, par
+conséquent, une multitude de frameworks, services, langages, méthodologies et paradigmes liés à leur
+développement.
 
-    Ces technologies aux noms exotiques, aux logos plus brillants les uns que les autres et aux 
-    conférences accrocheuses qui leur sont dédiées, font que leurs différences relèvent plus
-    d'une stratégie marketing visant les informaticiens, réussie que des attributs
-    intrinsèques de la technologie en question. 
+Ces technologies aux noms exotiques, aux logos plus brillants les uns que les autres et aux
+conférences accrocheuses qui leur sont dédiées, font que leurs différences relèvent plus
+d'une stratégie marketing visant les informaticiens, réussie que des attributs
+intrinsèques de la technologie en question.
 
-    L'application étant d'une complexité modérée et ne demandant pas de ressources importantes
-    comme tel pourrait être le cas pour une messagerie instantanée à grand échelle ou une application
-    utilisant abondamment un domaine spécifique de connaissance comme le machine learning, le traitement d'images, les jeux vidéos, etc.
-    Exclu \textit{de facto} le choix d'une technologie basée exclusivement sur les performances ou sur le développement natif.
+L'application étant d'une complexité modérée et ne demandant pas de ressources importantes
+comme tel pourrait être le cas pour une messagerie instantanée à grand échelle ou une application
+utilisant abondamment un domaine spécifique de connaissance comme le machine learning, le traitement d'images, les jeux vidéo, etc.
+Exclu \textit{de facto} le choix d'une technologie basée exclusivement sur les performances ou sur le développement natif.
 
-    N'ayant jamais fait cela auparavant, il n'y a aucune préférence de ma part pour telle ou telle technologie.
+N'ayant jamais fait cela auparavant, il n'y a aucune préférence de ma part pour telle ou telle technologie.
 
-    Ces constats donnent lieu aux critères de sélection suivants:
-    \smallskip
-    \begin{itemize}
-        \item Développement cross-plateforme
-        \item Simplicité
-        \item Apprentissage d'un langage plutôt qu'une multitude
-        \item Vaste documentation et ressources d'apprentissage
-    \end{itemize}
-    \smallskip
-    Le premier critère est celui qui réduit le plus la liste des possibilités. En effet, les frameworks 
-    permettant le développement d'applications pour Android et IOS ne se comptent pas en grand nombre. Il existe\footnote{Liste non exhaustive}:
-    \smallskip
-    \begin{itemize}
-        \item Xamarin - Microsoft
-        \item React Native - Facebook
-        \item Flutter - Google
-        \item Adobe PhoneGap - Adobe
-        \item Ionic - MIT
-    \end{itemize}
-    \smallskip
-    Le choix parmi ces possibilités découle essentiellement de l'arbitraire. Toutefois, Ionic a été exclu
-    car il est nécessaire de maîtriser HTML5 et par conséquent CSS mais encore Angular JS. Ce qui contredit le 3ème critère.
+Ces constats donnent lieu aux critères de sélection suivants:
+\smallskip
+\begin{itemize}
+    \item Développement cross-plateforme
+    \item Simplicité
+    \item Apprentissage d'un langage plutôt qu'une multitude
+    \item Vaste documentation et ressources d'apprentissage
+\end{itemize}
+\smallskip
+Le premier critère est celui qui réduit le plus la liste des possibilités. En effet, les frameworks
+permettant le développement d'applications pour Android et IOS ne se comptent pas en grand nombre. Il existe\footnote{Liste non exhaustive}:
+\smallskip
+\begin{itemize}
+    \item Xamarin - Microsoft
+    \item React Native - Facebook
+    \item Flutter - Google
+    \item Adobe PhoneGap - Adobe
+    \item Ionic - MIT
+\end{itemize}
+\smallskip
+Le choix parmi ces possibilités découle essentiellement de l'arbitraire. Toutefois, Ionic a été exclu car il est nécessaire de maîtriser HTML5 et par conséquent CSS mais encore Angular JS. Ce qui contredit le 3ème critère.
 
-    React native a été exclu pour des raisons similaires. I.e. l'apprentissage de divers langages.
+React native a été exclu pour des raisons similaires. I.e. l'apprentissage de divers langages.
 
-    Finalement, suite à un cours de Academind d'une durée de 40 heures portant sur les aspects les
-    plus basiques du développement jusqu'au déploiement de l'application en passant par le routage, la gestion de requêtes http,
-    la connexion à tout un écosystème de bases de données, l'utilisation de caméra et géolocalisation, et même sur 
-    comment changer le logo de l'application, le choix s'est porté sur Flutter.
+Finalement, à la suite d’un cours de Academind d'une durée de 40 heures portant sur les aspects les plus basiques du développement jusqu'au déploiement de l'application en passant par le routage, la gestion de requêtes http, la connexion à tout un écosystème de bases de données, l'utilisation de caméra et géolocalisation, et même sur comment changer le logo de l'application, le choix s'est porté sur Flutter.
 
-    Flutter est un framework crée par Google. Ce dernier offre, pour les applications, le service Firebase qui englobe :
-    \smallskip
-    \begin{itemize}
-        \item Cloud Firestore
-        \item Real time database
-        \item Functions
-        \item Machine learning
-        \item Cloud messaging
-        \item \dots
-    \end{itemize}
-    \smallskip
-    Firebase s'intègre, par conception, particulièrement bien et facilement à Flutter. Même s'ils sont
-    indépendants, leurs utilisation conjointe forme un seul écosystème plus facile à appréhender. Ainsi pour la 
-    base de données, le choix a été la Real time database. Car cette dernière fournit une API REST.
+Flutter est un framework crée par Google. Ce dernier offre, pour les applications, le service Firebase qui englobe :
 
-    De plus, toujours dans cet ecosystème, \textit{Cloud messaging} est utilisé pour l'envoi des notifications et \textit{Functions} pour 
-    effectuer des actions côté serveur lorsque la base de données subit des modifications. 
+\smallskip
+\begin{itemize}
+    \item Cloud Firestore
+    \item Real time database
+    \item Functions
+    \item Machine learning
+    \item Cloud messaging
+    \item \dots
+\end{itemize}
+\smallskip
+Firebase s'intègre, par conception, particulièrement bien et facilement à Flutter. Même s'ils sont
+indépendants, leurs utilisation conjointe forme un seul écosystème plus facile à appréhender. Ainsi pour la
+base de données, le choix a été la Real time database. Car cette dernière fournit une API REST.
 
-    \section{Flutter}
-    Flutter est un \textit{Software Developpement Kit} (SDK) développé par Google permettant de concevoir
-    des applications pour plusieurs plateformes. Notamment, Android et IOS avec un seul code source.
+De plus, toujours dans cet écosystème, \textit{Cloud messaging} est utilisé pour l'envoi des notifications et \textit{Functions} pour
+effectuer des actions côté serveur lorsque la base de données subit des modifications.
 
-    Fluter est aussi et surtout un framework. Il se caractérise par le fait qu'il va principalement dessiner des éléments
-    à l'écran en se basant sur les pixels. Ainsi, il n'utilise pas, de base, de libraries natives. Par exemple, pour dessiner un 
-    bouton, il ne va pas faire appel au primitives bouton dans Android ou IOS mais va dessiner pixel par pixel
-    l'objet souhaité.
+\section{Flutter}
+Flutter est un \textit{Software Developpement Kit} (SDK) développé par Google permettant de concevoir
+des applications pour plusieurs plateformes. Notamment, Android et IOS avec un seul code source.
 
-    \subsection{Dart}
-    Dart est le langage de programmation avec lequel certains éléments du framework ont été développé mais il s'agit
-    surtout du langage dans lequel on implémente une application en Flutter. 
+Fluter est aussi et surtout un framework. Il se caractérise par le fait qu'il va principalement dessiner des éléments
+à l'écran en se basant sur les pixels. Ainsi, il n'utilise pas, de base, de libraries natives. Par exemple, pour dessiner un
+bouton, il ne va pas faire appel au primitives bouton dans Android ou IOS mais va dessiner pixel par pixel
+l'objet souhaité.
 
-    C'est un langage orienté objet avec un syntaxe de type C à l'image d'autres langages comme Java ou C++.
-    Sa syntaxe est proche du Java. 
-    
-    Il partage certaines fonctionnalités propres au langages fonctionnels. Notamment, l'inférence de type ou encore
-    certaines fonctionnalités comme les \textit{map}, \textit{functors} \dots
+\subsection{Dart}
+Dart est le langage de programmation avec lequel certains éléments du framework ont été développé mais il s'agit
+surtout du langage dans lequel on implémente une application en Flutter.
 
-    En Dart, l'allocation de mémoire est gérée automatiquement et sa libération est faite par un garbage collector. 
+C'est un langage orienté objet avec un syntaxe de type C à l'image d'autres langages comme Java ou C++.
+Sa syntaxe est proche du Java.
 
-    Voici un exemple minimal d'un \textit{Hello world} en Dart:
-    \begin{listing}[!h]
-        \begin{minted}{dart}
+Il partage certaines fonctionnalités propres au langages fonctionnels. Notamment, l'inférence de type ou encore
+certaines fonctionnalités comme les \textit{map}, \textit{functors} \dots
+
+En Dart, l'allocation de mémoire est gérée automatiquement et sa libération est faite par un garbage collector.
+
+Voici un exemple minimal d'un \textit{Hello world} en Dart:
+\begin{listing}[!h]
+    \begin{minted}{dart}
             void main() => print('Hello, World!');
         \end{minted}
-        \label{code:helloWorld}
-        \caption{Hello world}
-    \end{listing}
-    \newpage
+    \label{code:helloWorld}
+    \caption{Hello world}
+\end{listing}
+\newpage
 
-    \subsection{Architecture}
-    Pour mieux comprendre les différents éléments de programmation qui vont suivre, il est intérressant de s'attarder
-    un peu sur l'architcture interne du framework.  
-    Flutter a un architecture en couches (\textit{layers}).
-    \begin{figure}[!h]
-        \begin{center}
-            \begin{tikzpicture}
-                \node (material) [start] {material};
-                \node (cupertino) [start, right of=material, xshift=2cm] {cupertino};
-                \node (widgets) [start, below of=material, minimum width=6cm, xshift=1.5cm] {widgets};
-                \node (render) [start, below of=widgets, minimum width=6cm] {rendering};
-                \node (animation) [start, below of=render, minimum width=2cm, xshift=-2cm] {animation};
-                \node (paint) [start, right of=animation, minimum width=2cm, xshift=1cm ] {painting};
-                \node (gestures) [start, right of=paint, minimum width=2cm, xshift=1cm] {gestures};
-                \node (fundation) [start, below of=animation, minimum width=6cm, xshift=2cm] {foundation};
-            \end{tikzpicture}
-        \end{center}
-        \caption{Layers du Framework Flutter}
-        \label{fig:layers}
-    \end{figure}
+\subsection{Architecture}
+Pour mieux comprendre les différents éléments de programmation qui vont suivre, il est intérressant de s'attarder
+un peu sur l'architcture interne du framework.
+Flutter a un architecture en couches (\textit{layers}).
+\begin{figure}[!h]
+    \begin{center}
+        \begin{tikzpicture}
+            \node (material) [start] {material};
+            \node (cupertino) [start, right of=material, xshift=2cm] {cupertino};
+            \node (widgets) [start, below of=material, minimum width=6cm, xshift=1.5cm] {widgets};
+            \node (render) [start, below of=widgets, minimum width=6cm] {rendering};
+            \node (animation) [start, below of=render, minimum width=2cm, xshift=-2cm] {animation};
+            \node (paint) [start, right of=animation, minimum width=2cm, xshift=1cm ] {painting};
+            \node (gestures) [start, right of=paint, minimum width=2cm, xshift=1cm] {gestures};
+            \node (fundation) [start, below of=animation, minimum width=6cm, xshift=2cm] {foundation};
+        \end{tikzpicture}
+    \end{center}
+    \caption{Layers du Framework Flutter}
+    \label{fig:layers}
+\end{figure}
 
-    Le \textit{layer} \textit{foundation} offre les clases de bases du framework sans avoir à tenir compte
-    de l'\textit{engine} écrit en C++ qui se trouve en dessous. Il offre aussi, au moyen de \textit{animation}, \textit{painting}
-    et \textit{gestures} les bases pour l'animation, le dessin et la detection de mouvement sur l'écran.
+Le \textit{layer} \textit{foundation} offre les clases de bases du framework sans avoir à tenir compte
+de l'\textit{engine} écrit en C++ qui se trouve en dessous. Il offre aussi, au moyen de \textit{animation}, \textit{painting}
+et \textit{gestures} les bases pour l'animation, le dessin et la detection de mouvement sur l'écran.
 
-    Le \textit{layer} \textit{rendering} offre une abstraction permettant de gérer l'affichage des éléments.
-    Il va construire des objets (dérivés des widgets principalement) organisés sous forme d'arbre dynamique qui peuvent être affichés à l'écran.
+Le \textit{layer} \textit{rendering} offre une abstraction permettant de gérer l'affichage des éléments.
+Il va construire des objets (dérivés des widgets principalement) organisés sous forme d'arbre dynamique qui peuvent être affichés à l'écran.
 
-    Le \textit{layer} \textit{widgets} est une abstraction au dessus de \textit{rendering} qui respecte le pattern de conception composite. Ainsi, chaque objet dans le \textit{layer} \textit{rendering} 
-    lui correspond une classe dans le \textit{layer} \textit{widgets}.
+Le \textit{layer} \textit{widgets} est une abstraction au dessus de \textit{rendering} qui respecte le pattern de conception composite. Ainsi, chaque objet dans le \textit{layer} \textit{rendering}
+lui correspond une classe dans le \textit{layer} \textit{widgets}.
 
-    Le \textit{layer} \textit{material} et \textit{cupertino} sont un ensemble de classes prédéfinies et personalisables qui implémentent tout un catalogue 
-    de widgets avec respectivement le style material design d'Android et le design propre à IOS.
-    
-    \subsection{Les widgets}
-    Les widgets dans Flutter sont les éléments avec lesquels le programmeur à le plus de contact. Ils sont en effet, le composant principal d'une application
-    Flutter. Voici un exemple:
+Le \textit{layer} \textit{material} et \textit{cupertino} sont un ensemble de classes prédéfinies et personalisables qui implémentent tout un catalogue
+de widgets avec respectivement le style material design d'Android et le design propre à IOS.
 
-    \begin{listing}[!h]
-        \begin{minted}{dart}
+\subsection{Les widgets}
+Les widgets dans Flutter sont les éléments avec lesquels le programmeur à le plus de contact. Ils sont en effet, le composant principal d'une application
+Flutter. Voici un exemple:
+
+\begin{listing}[!h]
+    \begin{minted}{dart}
             Text(
                   "Crazy Wolf",
                   style: TextStyle(fontSize: 26, fontFamily: "Anton"),
@@ -148,43 +148,43 @@
         \end{minted}
     \caption{Widget Text}
     \label{code:textWidget}
-    \end{listing}
+\end{listing}
 
-    Comme le code le sous-entend, les widgets peuvent s'encapsuler les uns dans les autres. Ainsi, 
-    Le widget \textit{Text} accepte dans sont constructeur une chaine de caractères "Crazy Wolf" et un style qui est lui-même un
-    widget \textit{TextStyle}. À son tour, il accepte, entre autres, une taille et une police d'écriture en argument.
+Comme le code le sous-entend, les widgets peuvent s'encapsuler les uns dans les autres. Ainsi,
+Le widget \textit{Text} accepte dans sont constructeur une chaine de caractères "Crazy Wolf" et un style qui est lui-même un
+widget \textit{TextStyle}. À son tour, il accepte, entre autres, une taille et une police d'écriture en argument.
 
-    Cette encapsulation n'est pas un choix arbitraire mais trahi, comme vu auparavant, l'architecture du framework. En effet, 
-    Le \textit{layer} \textit{rendering} est un arbre dynamique de widgets (pas seulement) et le \textit{layer} \textit{widgets}
-    respecte le pattern composite. Ainsi, il est naturel que les widgets se composent.
+Cette encapsulation n'est pas un choix arbitraire mais trahi, comme vu auparavant, l'architecture du framework. En effet,
+Le \textit{layer} \textit{rendering} est un arbre dynamique de widgets (pas seulement) et le \textit{layer} \textit{widgets}
+respecte le pattern composite. Ainsi, il est naturel que les widgets se composent.
 
-    On en déduit que Flutter est un framework déclaratif plutôt	qu'impératif. En effet, plutôt que de modifier des instances d'objets existants
-    afin de varier l'affichage, Flutter construit de nouvelles instances de widgets selon les besoins.
+On en déduit que Flutter est un framework déclaratif plutôt	qu'impératif. En effet, plutôt que de modifier des instances d'objets existants
+afin de varier l'affichage, Flutter construit de nouvelles instances de widgets selon les besoins.
 
-    La philosophie sous-jacente du framework est de composer de petits widgets aux fonctionnalités de bases afin de 
-    créer une fonctionalité complexe. 
-    
-    Le terme widget englobe une multitude de verbes. Un widget peut ne pas avoir de représentation en tant que tel
-    mais peut offrire un positionement, une transformation, une taille, interaction ave l'utilisateur, animation, \dots 
-    
-    Par exemple, le widget \textit{Center} centre un autre widget en argument au centre de l'écran, dans la mesure de l'espace restant disponible.
-    \begin{listing}[h]
-        \begin{minted}{dart}
+La philosophie sous-jacente du framework est de composer de petits widgets aux fonctionnalités de bases afin de
+créer une fonctionalité complexe.
+
+Le terme widget englobe une multitude de verbes. Un widget peut ne pas avoir de représentation en tant que tel
+mais peut offrire un positionement, une transformation, une taille, interaction ave l'utilisateur, animation,~\dots
+
+Par exemple, le widget \textit{Center} centre un autre widget en argument au centre de l'écran, dans la mesure de l'espace restant disponible.
+\begin{listing}[h]
+    \begin{minted}{dart}
             Center(child: Text(...),),
         \end{minted}
     \caption{Widget Center}
     \label{code:center}
-    \end{listing}
+\end{listing}
 
-    Les widget sont des classes immutables, c'est-à-dire qu'une fois l'objet instancié, il n'est plus possible d'en modifier le contenu.
-    Il existe essentiellement deux types de widgets dans Flutter: ceux qui on un état: \textit{StatefulWidget} et ceux qui n'ont en pas:
-    les \textit{StatelessWidget}.
+Les widget sont des classes immutables, c'est-à-dire qu'une fois l'objet instancié, il n'est plus possible d'en modifier le contenu.
+Il existe essentiellement deux types de widgets dans Flutter: ceux qui on un état: \textit{StatefulWidget} et ceux qui n'ont en pas:
+les \textit{StatelessWidget}.
 
-    \subsubsection*{StatelessWidget}
-    Ce sont les widgets dont les propriétés ne varient pas dans le temps. Par exemple:
+\subsubsection*{StatelessWidget}
+Ce sont les widgets dont les propriétés ne varient pas dans le temps. Par exemple:
 
-    \begin{listing}[h]
-        \begin{minted}{dart}
+\begin{listing}[h]
+    \begin{minted}{dart}
             import 'package:flutter/material.dart';
             class ScreenSplash extends StatelessWidget {
                 @override
@@ -193,92 +193,104 @@
         \end{minted}
     \caption{Exemple \textit{stateless}}
     \label{code:statelessExample}
-    \end{listing}
+\end{listing}
 
-    Ici, \textit{ScreenSplash} hérite de \textit{StatelessWidget}. Afin, de determiner la représentation visuelle d'un widget,
-    il faut \textit{override} la méthode \textit{build()} de \textit{StatelessWidget}. Ainsi, \textit{ScreenSplash} retourne un \textit{Scaffold}
-    qui est un écran d'affichage basique respectant le style material design. À son tour, 
-    \textit{Scaffold} a une bare de progression circulaire (le \textit{CircularProgressIndicator}) au centre (\textit{Center}) de l'écran.
-    \newpage
-    \subsubsection*{StatefulWidget}
-    Ce sont les widgets dont les propriétés peuvent varier dans le temps. Ces widgets ont un état, or ils sont immutable. C'est pourquoi ils sauvegardent
-    l'état dans une classe séparée sous-classe de \textit{State}.
+Ici, \textit{ScreenSplash} hérite de \textit{StatelessWidget}. Afin, de determiner la représentation visuelle d'un widget,
+il faut \textit{override} la méthode \textit{build()} de \textit{StatelessWidget}. Ainsi, \textit{ScreenSplash} retourne un \textit{Scaffold}
+qui est un écran d'affichage basique respectant le style material design. À son tour,
+\textit{Scaffold} a une bare de progression circulaire (le \textit{CircularProgressIndicator}) au centre (\textit{Center}) de l'écran.
 
-    Quand l'état change à l'aide de l'appel de fonction: \textit{setState()}. L'interface est mise-à-jour. En guise d'exemple voici une partie du code source
-    de l'écran \textit{Horaires} \ref{fig:horaires}. Notamment, le petit menu inférieur permettant d'afficher tous les horaires où seulement ceux de l'utilisateur
-    authentifié.
-    \begin{listing}[h]
-        \begin{minted}{dart}
-class ScreenHoraire extends StatefulWidget {
-    static const routeName = "/horaires";
+Cette classe représente l'écran affiché à chaque fois qu'une requête à la base de données se fait. Elle permet à l'utilisateur de savoir qu'une action
+est en cours et qu'il doit patienter.
+\newpage
+\subsubsection*{StatefulWidget}
+Ce sont les widgets dont les propriétés peuvent varier dans le temps. Ces widgets ont un état, or ils sont immutable. C'est pourquoi ils sauvegardent
+l'état dans une classe séparée  sous-classe de \textit{State}.
+
+Quand l'état change à l'aide de l'appel de fonction \textit{setState()}, l'interface est mise-à-jour. En guise d'exemple voici une partie du code source
+de l'écran \textit{Horaires} \ref{fig:horaires}. Notamment, le petit menu inférieur permettant d'afficher tous les horaires où seulement ceux de l'utilisateur authentifié.
+\begin{listing}[h]
+    \begin{minted}{dart}
+class ScreenScheduleView extends StatefulWidget {
     @override
-    _ScreenHoraireState createState() => _ScreenHoraireState();}
-
-class _ScreenHoraireState extends State<ScreenHoraire> {
-    int _selectedIndex = 1; //...
-    void _onItemTapped(int index) {setState(() {_selectedIndex = index;});}
+    _ScreenScheduleViewState createState() => _ScreenScheduleViewState();
+    }
+    class _ScreenScheduleViewState extends State<ScreenScheduleView> {
+    var _selectedIndex = 0;
+    
+    void _onItemTapped(int index) {
+        setState(() {_selectedIndex = index;});
+    }
         \end{minted}
     \caption{Screen Horaires}
     \label{code:screenHoraires}
-    \end{listing}
-    
-    L'écran \textit{Horaire} hérite d'un \textit{StatefulWidget}. Dans la classe d'état il y a l'attribut: \textit{selectedIndex}. L'indice selectionné a pour valeur 1. 
-    Si la fonction \textit{onItemTapped(int index)} est appellée avec un entier en argument alors, à l'aide de la fonction \textit{setState} l'état est modifié
-    et la fonction \textit{build()} de \textit{ScreenHoraireState} est appelée.
+\end{listing}
 
-    \begin{listing}[h]
-        \begin{minted}{dart}
+La classe \textit{ScheduleView} hérite d'un \textit{StatefulWidget}. Dans la classe d'état il y a l'attribut: \textit{selectedIndex}. L'indice selectionné a pour valeur 0 à la construction de l'instance.
+Si la fonction \textit{onItemTapped(int index)} est appellée avec un entier en argument alors, à l'aide de la fonction \textit{setState} l'état est modifié
+et la fonction \textit{build()} de \textit{ScreenScheduleViewSate} est appelée. Ainis le \textit{widget} est reconstruit en fonction de son nouvel état.
+
+\begin{listing}[h]
+    \begin{minted}{dart}
 @override
-Widget build(BuildContext context) {//...
-    return Scaffold(//...
+Widget build(BuildContext context) {
+    return Scaffold(
     bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
         items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Mes services"),),
-            BottomNavigationBarItem(icon: Icon(Icons.list), title: Text("Tous les horaires"),)
-            ]),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text("Mes services")),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            title: Text("Tous les horaires"))]),
         \end{minted}
-    \caption{Build dans horaires}
+    \caption{BottomNavigation}
     \label{code:buildHoraire}
-    \end{listing}
+\end{listing}
 
-    Scaffold accepte un menu de navigation au bas de la page. Celui-ci est un widget: \textit{BottomNavigationBar}. Ce widget prend en construction
-    une fonction qui est appelée lorsque une tap a été detecté sur l'un des deux icons définis dans la liste \textit{Items} ainsi que l'index actuellement 
-    selectionné. Le premier élément de la liste i.e. "Mes services" a pour index 0. Et "Tous les horaires" 1. Par défaut, \textit{selectedIndex} vaut 1. C'est donc tous les 
-    horaires qui sont affiché.
-    
-    Lorsque l'utilisateur clic su l'icon de la personne, \textit{BottomNavigationBar} va appeler la fonction \textit{onItemTapped} définie dans le code \ref{code:screenHoraires} avec
-    l'index de l'icon en argument. \textit{onItemTapped} va changer l'état du widget et par extension la valeur de \textit{selectedIndex}. L'état ayant changer la fonction
-    \textit{build} est appelée et donc \textit{BottomNavigationBar} redessiné avec un \textit{currentIndex} potentiellement différent. Traduisant ainsi 
-    un affichage différent et l'icon séléctionné apparaitrai en orange. 
+Scaffold accepte un menu de navigation au bas de la page. Celui-ci est un widget: \textit{BottomNavigationBar}. Ce widget prend en construction:
+\begin{itemize}
+    \item une fonction qui est appelée lorsque une \textit{tap} a été detecté sur l'un des deux icons définis dans la liste \textit{Items}.
+    \item un index qui définit lequel des éléments de la liste est actuellement séléctionné.
+    \item une liste de \textit{widgets} de type \textit{BottomNavigationBarItem}.
+\end{itemize}
+Le premier élément de la liste i.e. "Mes services" a pour index 0. Et "Tous les horaires" 1. Par défaut, \textit{selectedIndex} vaut 0. Dans un premier temps c'est "Mes services" qui est affiché.
 
-    \subsection{Flux de données}
-    Dans la partie précédente on constate que la gestion de l'état des widgets peut vite devenir encombrante. En effet, dans l'exemple,
-    l'utilisation d'un \textit{StatefulWidget} est naturelle, l'information étant un index n'est ni complexe ni lourde. Or comment, partager des 
-    données complexes entre les différents widgets?
+Lorsque l'utilisateur clic su l'icon , \textit{BottomNavigationBar} va appeler la fonction \textit{onItemTapped} définie dans le code \ref{code:screenHoraires} avec
+l'index de l'icon en argument. \textit{onItemTapped} va changer l'état du widget et par extension la valeur de \textit{selectedIndex}. L'état ayant changer la fonction
+\textit{build} est appelée et donc \textit{BottomNavigationBar} redessiné avec un \textit{currentIndex} potentiellement différent. Traduisant ainsi
+un affichage différent et l'icon séléctionné apparaitrai en orange.
 
-    En général on fait la distinction entre l'état éphémère et l'état de l'application.
-    \smallskip
-    \begin{itemize}
-        \item L'état éphémère est celui qui peut entièrement être définit au sein d'un widget. Il n'a pas ou peu besoin d'être
-        accédé à l'exterieur du widget et il ne varie pas de façon complexe.
-        \item L'état de l'application est celui qui à l'inverse, peu se modifier de façon complexe, doit être préservé lorsque l'application est fermée, 
-        contient de vastes informations et doit être partagé parmi divers widgets. Comme par exemple, la liste des serveurs, la liste des services, les 
-        donnée d'authentification~\dots
-    \end{itemize}
+\subsection{Flux de données}
+Dans la partie précédente on constate que la gestion de l'état des widgets peut vite devenir encombrante. En effet, dans l'exemple,
+l'utilisation d'un \textit{StatefulWidget} est naturelle, l'information étant un index n'est ni complexe ni lourde. Or comment, partager des
+données complexes entre les différents widgets?
 
-    Il existe de nombreuse técniques pour la gestion du flux de données dans les applications et en informatique en générale. Pour cette application, 3 façons
-    on été utilisées. 
-    
-    Pour transmettre les données d'un widget à ses enfants soit la transmission s'est faite par constructeur qui est classique dans les langages orientés 
-    objets soit à l'aide des patterns Provider et Consumer.
+En général on fait la distinction entre l'état éphémère et l'état de l'application.
+\smallskip
+\begin{itemize}
+    \item L'état éphémère est celui qui peut entièrement être définit au sein d'un widget. Il n'a pas ou peu besoin d'être
+          accédé à l'exterieur du widget et il ne varie pas de façon complexe.
+    \item L'état de l'application est celui qui à l'inverse, peu se modifier de façon complexe, doit être préservé lorsque l'application est fermée,
+          contient de vastes informations et doit être partagé parmi divers widgets. Comme par exemple, la liste des serveurs, la liste des services, les
+          donnée d'authentification~\dots
+\end{itemize}
 
-    Pour transmettre les données d'un enfant à un parent, les callback on été utilisés.
-        \subsubsection{Par constructeur}
-        Il s'agit à la fois de la méthode la plus répandue comme la plus simple. Voici un exemple où le parent 
-            \begin{listing}[h]
-                \begin{minted}{dart}
+Il existe de nombreuse técniques pour la gestion du flux de données dans les applications et en informatique en générale. Pour cette application, 3 façons
+on été utilisées.
+
+Pour transmettre les données d'un widget à ses enfants soit la transmission s'est faite par constructeur qui est classique dans les langages orientés
+objets soit à l'aide des patterns Provider et Consumer.
+
+Pour transmettre les données d'un enfant à un parent, les callback on été utilisés.
+
+\subsubsection{Par constructeur}
+Il s'agit à la fois de la méthode la plus répandue comme la plus simple. Voici un exemple:
+
+\begin{listing}[h]
+    \begin{minted}{dart}
 class HoraireSubItem extends StatelessWidget {
     const HoraireSubItem({//...,
      @required this.isUserIn,}): super(key: key);
@@ -290,24 +302,39 @@ class HoraireSubItem extends StatelessWidget {
         return Card(
         color: isUserIn ? Colors.orangeAccent : Colors.white,
         //...
-                \end{minted}
-            \caption{par constructeur}
-            \label{code:horaireSubItem}
-            \end{listing}
-        \subsubsection{Provider \& Consumer}
+    \end{minted}
+    \caption{par constructeur}
+    \label{code:horaireSubItem}
+\end{listing}
+Cette classe \ref{code:horaireSubItem} est celle qui se charge de dessiner un élément de la liste des horaires \ref{fig:horaires}. Son widget parent
+est \textit{HoraireItem} qui s'occupe, entre autres, de fournir les informations suivantes à son fils: un service, les serveurs correspondants, les doubleur correspondants et
+si le l'utilisateur authentifié travail dans le service en question, alors une variable booléenne de valeur \textit{vraie} est transmise.
+
+L'enfant, \textit{HoraireSubItem} utilise cette variable pour afficher la \textit{Card(...)}\footnote{C'est un widget dans le catalogue material design}
+en orange quand l'utilisateur authentifié y travaille et en blanc quand il n'y travaille point. Ainsi, c'est bien une instance différente de la carte qui
+va être crée pour changer la couleur de d'arrier fond et non une modification d'une instance existante.
 
 
-    \section{La base de données}
-        \subsection{La méthodologie REST}
-        \subsection{REST appliqué à Dart}
+\subsubsection{Provider \& Consumer}
 
-            
-    \section{Notifications}
+Théoriquement, rien n'empêche de transmettre toutes les informations par constructeur. Toutefois, l'arborescence des widgets devient rapidement profonde
+et dans la situation où une certaine information est nécessaire au niveau \(n\) mais aussi au niveau \(n+i, i > 1\) il serait nécéssaire de transmettre l'information
+dans tous les widgets intérmédiares alors qu'ils n'en n'ont pas besoin.
 
 
-    
-    \section{Sécurité}
 
-        \subsection{Authentification}
 
-        \subsection{Firebase rules}
+\section{La base de données}
+\subsection{La méthodologie REST}
+\subsection{REST appliqué à Dart}
+
+
+\section{Notifications}
+
+
+
+\section{Sécurité}
+
+\subsection{Authentification}
+
+\subsection{Firebase rules}
