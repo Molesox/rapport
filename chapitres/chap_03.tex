@@ -1,6 +1,6 @@
 \chapter[L'application]{Présentation de l'application}
 
-Dans ce chapitre, les scénario les plus communs
+Dans ce chapitre, les scénarios les plus communs
  d'utilisation de l'application Crazy Wolf sont 
  présentés au travers d'images commentées.
 
@@ -34,8 +34,8 @@ Puis elle, clic sur \textit{Mes services}.
     \label{fig:scen01}
 \end{figure}
 
-L'utilisateur doit dans un premier temps se connecter à l'aide d'identifiants déjà existant dans l'écran \ref{fig:login}. Une fois l'adresse mail et le mot de passe saisis, 
-l'écran \textit{Horaires} \ref{fig:horaires} s'affiche. 
+L'utilisateur doit dans un premier temps se connecter à l'aide d'identifiants déjà existants dans l'écran \ref{fig:login}. Une fois l'adresse mail et le mot de passe saisis, 
+l'écran \textit{mes horaires} \ref{fig:mesHoraires} s'affiche. 
 
 
 On y voit l'ensemble des horaires de travail. Les services sont définis par
@@ -46,17 +46,17 @@ On y voit l'ensemble des horaires de travail. Les services sont définis par
     \item la date
 \end{itemize}
 Les services sont ordonnés par date, les jours précédents au moment de la connexion ne 
-sont pas affichés. Les horaires correspondant à la personne authentifiée sont de couleurs orange.
+sont pas affichés. Les horaires correspondants à la personne authentifiée sont de couleur orange.
 
-Les services sont affichés sous forme de liste scrollable.
+Les services sont affichés sous forme de liste qui peut être défilée avec le doigt.
 
-On peut également naviguer à l'aide du menu inférieur à \textit{Mes services} où seuls les horaires du serveur authentifié sont affichés. Comme on le voit 
+On peut également naviguer, à l'aide du menu inférieur, à \textit{Mes services} où seuls les horaires du serveur authentifié sont affichés. Comme on le voit 
 dans \ref{fig:mesHoraires}
 
 \section[Mise en bourse d'un service - Scénario II]{Scénario II}
     \subsection*{Mise en bourse d'un service}
     Supposons que Kim, la serveuse authentifiée ne puisse pas travailler le 17 novembre.
-    Elle souhaite donc se faire remplacer. Pour se faire, dans l'onglet 
+    Elle souhaite donc se faire remplacer. Pour ce faire, dans l'onglet 
     \textit{Horaires}, elle peut mettre son service en bourse en glissant le 
     service en question sur la gauche.
     \begin{figure}[!h]
@@ -83,23 +83,23 @@ dans \ref{fig:mesHoraires}
         \label{fig:scen02a}
     \end{figure}
 
-Une fois le glissement effectué un popup est s'affiche \ref{fig:urgence} demandant
-à quel point le remplacement est urgent. Une fois que l'utilisateur à répondu, le service est mis
-en bourse. Un snakbar \footnote{Petite notification informative qui émerge dans la partie inférieur d'un écran} s'affiche pour le notifier que l'action à réussi.
-Si l'action venait à échouer par exemple à cause d'une déconexion à internet ou car le service se trouve déjà en bourse, un snackbar avec un message 
+Une fois le glissement effectué un \textit{popup} est s'affiche \ref{fig:urgence} demandant
+à quel point le remplacement est urgent. Une fois que l'utilisateur a répondu, le service est mis
+en bourse. Un snackbar \footnote{Petite notification informative qui émerge dans la partie inférieure d'un écran} s'affiche pour notifier que l'action a réussi.
+Si l'action venait à échouer par exemple à cause d'une déconnexion à internet ou car le service se trouve déjà en bourse, un snackbar avec un message 
 d'erreur pertinent s'afficherait également.
 
-Si l'action est réussie, tous les utilisateurs de l'application sont notifiés \ref{fig:notif} comme quoi un 
-nouveau service est disponible. La notification informe sur la disponibilité d'un service ainsi que 
+Si l'action est réussie, tous les utilisateurs de l'application sont notifiés \ref{fig:notif}d'un 
+nouveau service en bourse. La notification informe sur la disponibilité d'un service ainsi que 
 l'urgence requise à y répondre.
 
-Suit à ça, l'utilisatrice peut naviguer à l'aide du menu latéral \ref{fig:menu_sans_droits} où s'affichent les options
-de navigation suivante:
+Suit à cela, l'utilisatrice peut naviguer à l'aide du menu latéral \ref{fig:menu_sans_droits} où s'affichent les options
+de navigation suivantes:
 \smallskip
 \begin{itemize}
-    \item Horaires: Pour aller à l'écran \textit{Horaires} \ref{fig:horaires}
-    \item Logout: Pour se déconnecter, qui renvoie à l'écran \ref{fig:login} d'authentification
-    \item Bourse: Pour aller à l'écran \textit{Bourse aux jobs} \ref{fig:bourse}
+    \item Horaires: pour aller à l'écran \textit{Horaires} \ref{fig:horaires}
+    \item Logout: pour se déconnecter, qui renvoie à l'écran \ref{fig:login} d'authentification
+    \item Bourse: pour aller à l'écran \textit{Bourse aux jobs} \ref{fig:bourse}
 \end{itemize}
 
 \newpage
@@ -124,7 +124,7 @@ Cet onglet est partagé parmi tous les utilisateurs de l'application.
     \label{fig:scen02b}
 \end{figure}
 
-La couleur représente le degré d'urgence. Ainsi la convention suivante est appliqué:
+La couleur représente le degré d'urgence. Ainsi la convention suivante est appliquée:
 \smallskip
 \begin{itemize}
     \item rouge: implique une urgence élevée.
@@ -132,18 +132,18 @@ La couleur représente le degré d'urgence. Ainsi la convention suivante est app
     \item vert: implique une urgence basse.
 \end{itemize}
 \smallskip
-L'onglet \textit{Bourse aux jobs} affiche tous les service actuellement en bourse sous
-forme de liste scrollable. L'utilisateur ayant mis son service en bourse
-doit patienter à ce que quelqu'un y postule.
+L'onglet \textit{Bourse aux jobs} affiche tous les services actuellement en bourse sous
+forme de liste scrollable \footnote{ Scrollable: pouvant scroller, pouvant défiler  }. L'utilisateur ayant mis son service en bourse
+doit patienter à ce qu'un autre serveur y postule.
 
-Les utilisateurs sans privilèges sont autorisé à mettre un service en bourse uniquement s'ils y travaillent.
+Les utilisateurs sans privilèges sont autorisés à mettre un service en bourse uniquement s'ils y travaillent.
 
 \section[Postuler pour un service - Scénario III]{Scénario III}
     \subsection*{Postuler pour un service}
     Dans la continuation du scénario précédent, après avoir été notifiés,
-    deux serveurs vont postuler au nouveau service mis
-    en bourse. Leurs parcours étant identiques, nous allons en montrer qu'un.
-    Supposons qu'ils se soient authentifié comme vu en \ref{fig:login} et qu'ils se trouvent
+    deux serveurs postulent au nouveau service mis
+    en bourse. Leurs parcours sont identiques.
+    Supposons qu'ils se soient authentifiés comme vu en \ref{fig:login} et qu'ils se trouvent
     dans l'onglet \textit{Bourse au jobs} \ref{fig:bourse}.
     \vfill
     \begin{figure}[h]
@@ -153,13 +153,12 @@ Les utilisateurs sans privilèges sont autorisé à mettre un service en bourse 
         \label{fig:postuler}
     \end{figure}
     \vfill
-    Alors, ils peuvent glisser le service auquel ils souhaitent postuler sur
+    Alors, ils peuvent faire glisser le service auquel ils souhaitent postuler sur
     la gauche \ref{fig:postuler}. À nouveau, si l'opération réussi, un snackbar apparaît pour l'indiquer. Si au contraire, une
-    erreur se produit, notamment car l'utilisateur à déjà postulé ou une erreur de connection, un snackbar pertinent s'affiche aussi.
+    erreur se produit, notamment car l'utilisateur a déjà postulé ou une erreur de connexion, un snackbar pertinent s'affiche aussi.
     \newpage
-    L'utilisateur ayant mis le service en bourse doit procéder à l'acceptation
-    d'un seul postulant. Dans \textit{Bourse aux jobs} \ref{fig:bourse} les éléments de 
-    la liste sont clicable. Lorsqu'un utilisateur clic deux options sont possibles:
+    L'utilisateur ayant mis le service en bourse doit accepter un seul postulant. Dans \textit{Bourse aux jobs} \ref{fig:bourse} les éléments de 
+    la liste sont cliquables. Lorsqu'un utilisateur clique, deux options sont possibles:
     \smallskip
     \begin{figure}[!h]
         \centering
@@ -185,15 +184,15 @@ Les utilisateurs sans privilèges sont autorisé à mettre un service en bourse 
         \label{fig:scen03}
     \end{figure}
 
-    S'il s'agit de l'utilisateur ayant mis le service en bourse à l'occurrence Kim, l'écran \textit{Détails} tel que \ref{fig:detail_auth} s'affiche.
+    S'il s'agit de l'utilisateur ayant mis le service en bourse en l'occurrence Kim, l'écran \textit{Détails} s'affiche selon la figure \ref{fig:detail_auth}.
     
-    S'il s'agit de n'importe quel autre utilisateur alors l'écran \textit{Détails} s'affiche comme dans \ref{fig:detail_non_auth}
+    S'il s'agit de n'importe quel autre utilisateur, alors l'écran \textit{Détails} s'affiche comme dans \ref{fig:detail_non_auth}
 
     Ainsi, seul l'utilisateur ayant mis le service en bourse est en mesure d'accepter un ou une remplaçante. 
     
-    Pour se faire, Kim doit appuyer sur le bouton \textit{accepter} de la personne de son choix.
-    Elle accepte Sara. Tous les utilisateurs ayant des privilèges sont notifiés qu'un service nécéssite validation.
-    En attendant, l'élément de la bourse dans \textit{Bourse aux jobs} \ref{fig:a_valider} s'affiche comme nécéssitant validation.
+    Pour ce faire, Kim doit appuyer sur le bouton \textit{accepter} de la personne de son choix.
+    Elle accepte Sara. Tous les utilisateurs ayant des privilèges sont notifiés qu'un service nécessite validation.
+    En attendant, l'élément de la bourse dans \textit{Bourse aux jobs} \ref{fig:a_valider} s'affiche comme nécessitant validation.
 
 \section[Valider un échange - Scénario IV]{Scénario IV}
     \subsection*{Valider un échange}
@@ -214,7 +213,7 @@ Les utilisateurs sans privilèges sont autorisé à mettre un service en bourse 
         \end{tikzpicture}
     \end{center}
 
-    Les utilisateurs autres que \textit{normal} ont des privilèges.
+    Les utilisateurs dits \textit{normaux} sont les seuls à ne pas avoir de privilèges.
 
     \begin{itemize}
         \item [Normal:] Peut demander un échange et accepter des postulants.
@@ -222,8 +221,8 @@ Les utilisateurs sans privilèges sont autorisé à mettre un service en bourse 
         \item [Admin:] Peut ajouter de nouveaux serveurs. 
     \end{itemize}
     
-    Lorsque l'on clic sur l'élément à valider \ref{fig:a_valider} deux options
-    sont possibles suivant si l'utilisateur authentifié \ref{fig:valider_manager} et \textit{manager / admin} ou bien 
+    Lorsque l'on clique sur l'élément à valider \ref{fig:a_valider} deux options
+    sont possibles suivant si l'utilisateur authentifié \ref{fig:valider_manager} est \textit{manager / admin} ou bien 
     s'il est \textit{normal} \ref{fig:attente_validation}.
 
     \begin{figure}[!h]
@@ -260,7 +259,7 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
 \section[Ajouter un service - Scénario V]{Scénario V}
     \subsection*{Ajouter un service}
     Afin de créer les horaires pour le personnel, un manager ou administrateur doit créer des services. Supposons
-    que c'est Ari, une manager qui le fait. Après s'être authentifiée, elle peut à l'aide du menu latéral \ref{fig:menu_manager} naviguer
+    que c'est Ari, une \textit{manager}, qui le fait. Après s'être authentifiée, elle peut, à l'aide du menu latéral, \ref{fig:menu_manager} naviguer
     à \textit{Ajouter service} \ref{fig:ajout_service}
 
     \begin{figure}[!h]
@@ -290,7 +289,7 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
     Pour créer le service, il faut choisir:
     \smallskip
     \begin{itemize}
-        \item une date en appuyant sur \textit{Choisir une date} un popup avec le calendrier s'affiche \ref{fig:choix_date}.
+        \item une date en appuyant sur \textit{Choisir une date}. Un \textit{popup} avec le calendrier s'affiche \ref{fig:choix_date}.
         \item un type en appuyant sur \textit{midi} ou \textit{soir} \ref{fig:ajout_service_c}. 
         \item une ou plusieurs personnes au \textit{Service} \ref{fig:ajout_service_c}.
         \item zéro, une ou plusieurs personnes au \textit{Doublage} \ref{fig:ajout_service_c}.
@@ -302,8 +301,8 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
     Un service ne peut pas avoir la même personne au doublage et au service. Un service peut ne pas avoir
     de doubleurs. 
 
-    De plus, l'opération ajouter le service aux horaires qui se fait au moyen du bouton envoyer
-    dans le coin supérieur droit de la figure \ref{fig:ajout_service_c} retournera une erreur s'il existe un 
+    De plus, l'opération ajouter le service aux horaires, qui se fait au moyen du bouton envoyer,
+    dans le coin supérieur droit de la figure \ref{fig:ajout_service_c}, retournera une erreur s'il existe un 
     service du même type à la même date.
 
     \begin{center}
@@ -328,7 +327,7 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
 \newpage
 \section[Ajouter un serveur - Scénario VI]{Scénario VI}
     \subsection*{Ajouter un serveur}
-    Les utilisateurs ayant les privilèges administrateur ont la capacité
+    Les utilisateurs ayant les privilèges \textit{administrateur} ont la capacité
     d'ajouter de nouveaux serveurs.
 
     \begin{figure}[!h]
@@ -349,20 +348,20 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
         \label{fig:scen06}
     \end{figure}
 
-    Pour se faire, ils doivent après s'être authentifié, naviguer à l'aide 
-    du menu latéral \ref{fig:menu_admin} à l'onglet \textit{Ajouter serveur}
+    Pour ce faire, ils doivent après s'être authentifié, naviguer à l'aide 
+    du menu latéral \ref{fig:menu_admin} à l'onglet \textit{Ajouter serveur}.
 
-    Dans l'onglet \textit{Ajouter serveur} il faut remplir les champs définissant un serveurs. I.e. 
+    Dans l'onglet \textit{Ajouter serveur}, il faut remplir les champs définissants un serveur. I.e. 
     \smallskip
     \begin{itemize}
         \item Prénom
         \item Nom 
         \item Adresse mail
         \item Mot de passe
-        \item Niveau de privilèges: administrateur, normal, manager. 
+        \item Niveau de privilèges: \textit{administrateur}, \textit{normal}, \textit{manager}. 
     \end{itemize}
     \medskip
-    Le niveau de privilège le plus courant étant \textit{normal} il est déjà 
+    Le niveau de privilège le plus courant étant \textit{normal}, il est déjà 
     pré-sélectionné.
 
     Le mot de passe doit être strictement plus long que 6 caractères.
@@ -375,10 +374,10 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
     dans le système en appuyant sur le bouton \textit{+} dans le coin inférieur
     gauche de l'écran \textit{Ajouter serveur} \ref{fig:ajout_serveur}
 
-    Ce sont les indetifiants nécéssaires pour s'authentifier dans l'écran \ref{fig:login}.
+    Ce sont les identifiants nécessaires pour s'authentifier dans l'écran \ref{fig:login}.
     \section[Doublages - Scénario VII]{Scénario VII}
         \subsection*{Doublages}
-        Ici on va voir comment un administrateur ou un manager peut demander
+        Ici on va voir comment un \textit{administrateur} ou un \textit{manager} peut demander
         du personnel supplémentaire pour un service. Ces personnes supplémentaires sont dites 
         doubleurs et font un doublage.
 
@@ -408,21 +407,22 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
             \label{fig:scen07}
         \end{figure}
 
-        Dans un premier temps un utilisateur avec privilèges fait glisser un service 
+        Dans un premier temps, un utilisateur avec privilèges fait glisser un service 
         sur la gauche \ref{fig:ask_doublage}. Deux options sont possibles suivant si l'utilisateur travaille dans ce
         service ou pas.
         \smallskip
         \begin{itemize}
-            \item S'il y travaille alors un popup apparaît \ref{fig:ask_doublage2} pour demander si c'est bien une demande de doublage ou bien se faire remplacer
-            \item S'il n'y travaille pas alors la demande de doublage est directement envoyée en bourse.
+            \item S'il y travaille, alors un \textit{popup} apparaît \ref{fig:ask_doublage2} pour demander s'il s'agit d'une demande de doublage ou de remplacement.
+            \item S'il n'y travaille pas, alors la demande de doublage est directement envoyée en bourse.
         \end{itemize}
         \medskip
         Dans cet exemple, deux services sont mis en bourse. 
-        Un où l'administrateur n'y travaille pas \ref{fig:ask_doublage}. Comme pour les échange, le degré d'urgence \ref{fig:urgence} est demandé. On peut voir le service du 16 novembre en bourse. 
-        Et l'autre où l'administrateur travaille et où il choisit \ref{fig:ask_doublage2} qu'il cherche un doublage.
+        Dans le premier, l'administrateur n'y travaille pas \ref{fig:ask_doublage}. Comme pour les échanges, le degré d'urgence \ref{fig:urgence} est demandé. On peut voir le service du 16 novembre en bourse. 
+        
+        Le deuxième, l'administrateur y travaille et il choisit \ref{fig:ask_doublage2} qu'il cherche un doublage.
 
         À la différence du scénario III \ref{fig:scen03}, la condition pour pouvoir
-        accepter des postulants n'est plus d'être l'utilisater ayant mis le service en bourse
+        accepter des postulants n'est plus d'être l'utilisateur ayant mis le service en bourse
         mais d'avoir un niveau de privilèges supérieur à \textit{normal}.
         
         
