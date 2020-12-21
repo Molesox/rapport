@@ -207,8 +207,8 @@ est en cours et qu'il doit patienter.
 Ce sont les widgets dont les propriétés peuvent varier dans le temps. Ces widgets ont un état, or ils sont immutable. C'est pourquoi ils sauvegardent
 l'état dans une classe séparée  sous-classe de \textit{State}.
 
-Quand l'état change à l'aide de l'appel de fonction \textit{setState()}, la méthode \textit{build} est appelée et l'interface est mise-à-jour. En guise d'exemple voici une partie du code source
-de l'écran \textit{Horaires} \ref{fig:horaires}. Notamment, le petit menu inférieur permettant d'afficher tous les horaires où seulement ceux de l'utilisateur authentifié.
+Quand l'état change à l'aide de l'appel de fonction \textit{setState()}, la méthode \textit{build} est appelée et l'interface est mise-à-jour. En guise d'exemple, voici une partie du code source
+de l'écran \textit{Horaires} \ref{fig:horaires}. Notamment, le petit menu inférieur permettant d'afficher tous les horaires ou seulement ceux de l'utilisateur authentifié.
 \begin{listing}[h]
     \begin{minted}{dart}
 class ScreenScheduleView extends StatefulWidget {
@@ -258,13 +258,13 @@ Scaffold accepte un menu de navigation au bas de la page. Celui-ci est un widget
 \end{itemize}
 Le premier élément de la liste i.e. "Mes services" a pour index 0. Et "Tous les horaires" 1. Par défaut, \textit{selectedIndex} vaut 0. Dans un premier temps c'est "Mes services" qui est affiché.
 
-Lorsque l'utilisateur clic sur un icon , \textit{BottomNavigationBar} va appeler la fonction \textit{onItemTapped} définie dans le code \ref{code:screenHoraires} avec
-l'index de l'icon en question en argument. \textit{onItemTapped} va changer l'état du widget et par extension la valeur de \textit{selectedIndex}. L'état ayant changer la fonction
+Lorsque l'utilisateur clic sur un icône , \textit{BottomNavigationBar} va appeler la fonction \textit{onItemTapped} définie dans le code \ref{code:screenHoraires} avec
+l'index de l'icône en question en argument. \textit{onItemTapped} va changer l'état du widget et par extension la valeur de \textit{selectedIndex}. L'état ayant changer la fonction
 \textit{build} est appelée et donc \textit{BottomNavigationBar} redessiné avec un \textit{currentIndex} potentiellement différent. Traduisant ainsi
-un affichage différent et l'icon séléctionné apparaitrai en orange.
+un affichage différent et l'ion sélectionné apparaîtrait en orange.
 
 \subsection{Flux de données}
-Dans la partie précédente on constate que la gestion de l'état des widgets peut vite devenir encombrante. En effet, dans l'exemple,
+Dans la partie précédente, on constate que la gestion de l'état des widgets peut vite devenir encombrante. En effet, dans l'exemple,
 l'utilisation d'un \textit{StatefulWidget} est naturelle, l'information étant un index n'est ni complexe ni lourde. Or comment, partager des
 données complexes entre les différents widgets?
 
@@ -272,17 +272,16 @@ En général on fait la distinction entre l'état éphémère et l'état de l'ap
 \smallskip
 \begin{itemize}
     \item L'état éphémère est celui qui peut entièrement être définit au sein d'un widget. Il n'a pas ou peu besoin d'être
-          accédé à l'exterieur du widget et il ne varie pas de façon complexe.
+          accédé à l'extérieur du widget et il ne varie pas de façon complexe.
     \item L'état de l'application est celui qui à l'inverse, peu se modifier de façon complexe, doit être préservé lorsque l'application est fermée,
           contient de vastes informations et doit être partagé parmi divers widgets. Comme par exemple, la liste des serveurs, la liste des services, les
           données d'authentification~\dots
 \end{itemize}
 
-Il existe de nombreuse techniques pour la gestion du flux de données dans les applications et en informatique en générale. Pour cette application, 3 façons
+Il existe de nombreuse techniques pour la gestion du flux de données dans les applications et en informatique en général. Pour cette application, 3 façons
 on été utilisées.
 
-Pour transmettre les données d'un widget à ses enfants soit la transmission s'est faite par constructeur qui est classique dans les langages orientés
-objets soit à l'aide des patterns Provider et Consumer.
+Pour transmettre les données d'un widget à ses enfants soit la transmission s'est faite par constructeur soit à l'aide des classes \textit{ChangeNotifier}, \textit{ChangeNotifierProvider} et \textit{Consumer}.
 
 Pour transmettre les données d'un enfant à un parent, les callbacks on été utilisés.
 
@@ -304,7 +303,7 @@ class ScheduleCard extends StatelessWidget {
     \caption{ScheduleCard, par constructeur}
     \label{code:scheduleCard}
 \end{listing}
-Cette classe \ref{code:scheduleCard} est celle qui se charge de dessiner un élément de la liste des horaires \ref{fig:horaires}. Son widget parent se charge de générer la liste dans son ensemble ainsi que d'autres implémentation de la logique de l'application. De plus, le parent transmet par constructeur à \textit{ScheduleCard} les informations suivantes:
+Cette classe \ref{code:scheduleCard} est celle qui se charge de dessiner un élément de la liste des horaires \ref{fig:horaires}. Son widget parent se charge de générer la liste dans son ensemble ainsi que d'autres implémentations de la logique de l'application. De plus, le parent transmet par constructeur à \textit{ScheduleCard} les informations suivantes:
 \smallskip
 \begin{itemize}
     \item [doesUserWorkIn] : une variable booléenne indiquant si l'utilisateur actuellement authentifié travail dans le service en question. Ceci permet de changer la couleur de fond (orange ou blanc).
@@ -315,9 +314,9 @@ Cette classe \ref{code:scheduleCard} est celle qui se charge de dessiner un él�
 \end{itemize}
 \smallskip
 
-Ainsi chaque \textit{Card} ou élément de la liste est un instance de l'objet \textit{ScheduleCard}. Si le widget parent rappel sa fonction \textit{build} et que pour certaines instances de \textit{ScheduleCard} les attributs on changé, alors les anciennes instances sont détruite et de nouvelles avec les bonne propriétés sont crées.
+Ainsi chaque \textit{Card} ou élément de la liste est un instance de l'objet \textit{ScheduleCard}. On constat que les attributs sont \textit{final} ce qui veut dire qu'il sont constant au \textit{runtime}. Donc chaque instance de \textit{card} est immutable. Ainsi, une nouvelle instance doit remplacer la précédente si l'on souhaite mettre-à-jour l'interface. 
 
-\subsubsection{Provider + ChangeNotifier \& Consumer}
+\subsubsection{ChangeNotifier+Provider +  \& Consumer}
 
 Théoriquement, rien n'empêche de transmettre toutes les informations par constructeur. Toutefois, l'arborescence des widgets devient rapidement profonde
 et dans la situation où une certaine information est nécessaire au niveau \(n\) mais aussi au niveau \(n+i, i > 1\) il serait nécessaire de transmettre l'information
@@ -325,11 +324,83 @@ dans tous les widgets intermédiaires alors qu'ils n'en n'ont pas besoin.
 
 De plus, si une information n'est utile que tout en bas de l'arborescence et qu'elle a été transmise par constructeur, alors tous les widgets intermédiaires seront reconstruit inutilement.
 
-\emph{Provider}
+\emph{ChangeNotifier}\\
+Il s'agit d'une classe dans Flutter qui implémente un objet de type \textit{Listenable} du même framework. En somme, c'est une implémentation du pattern \textit{Observer}\footnote{https://en.wikipedia.org/wiki/Observer\_pattern}. Ainsi, il est possible d'utiliser \textit{ChangeNotifier} lorsqu'une classe, susceptible de muter, doit notifier d'autres objets de ses modifications internes. 
 
-Il s'agit d'un pattern de conception formulé par Microsoft pour son framework .NET. Toutefois, il s'agit en fait d'une reformulation du pattern bien connu \textit{Strategy}. 
+La classe Pool, celle qui gère la liste des \textit{PoolItem} - objets représentant un élément en bourse - utilise \textit{ChangeNotifier}.
+\begin{listing}[!h]
+    \begin{minted}{dart}
+class Pool with ChangeNotifier {
+  List<PoolItem> _pool;
+  bool isLoaded = false;
+  Pool(this._pool);
+  // ...
+}
+\end{minted}
+\caption{ChangeNotifier - mixin}
+\label{code:changeNotifier}
+\end{listing}
 
+Le mot clef \textit{with} veut dire qu'il s'agit d'un \textit{mixin}. Les \textit{mixin} permettent de combler l'absence d'héritage multiple. Ainsi, il est possible de réutiliser du code d'une classe dans de multiples hiérarchies de classes. Attention, ce n'est pas une interface dont il faut implémenter les méthodes.
+\newpage
+Voici, concrètement comment ça s'utilise. \textit{deletePoolItem} est une méthode de la classe \textit{Pool}. Lorsqu'un service mis en bourse est supprimé, cette méthode est appelée. Il s'agit d'une méthode asynchrone qui retourne, dans un future, rien.
 
+\begin{listing}[!h]
+\begin{minted}{dart}
+ Future<void> deletePoolItem(String poolId, token) async {
+    try {
+      await http.delete(UrlManager.pool_path(poolId) + token);
+      _pool.removeWhere((p) => p.id == poolId);
+      notifyListeners();
+      return;
+    } catch (error) {
+      print("[deletePoolItem]:: " + error.toString());
+    }
+  }
+\end{minted}
+\caption{ChangeNotifier - notify}
+\label{code:changeNotifierNotify}
+\end{listing}
+
+Comme on peut le voir, trois actions ont lieu:
+\smallskip
+\begin{itemize}
+    \item Une requête de suppression dans la base de données.
+    \item Supprime le \textit{Poolitem} de la liste.
+    \item Notifie tous les \textit{observateurs} ou \textit{listeners} d'une modification.
+\end{itemize}
+\smallskip
+Ce type de comportement a été implémenté dans diverses méthodes des classe suivantes: \textit{Pool}, \textit{Services}, \textit{Waiters} et \textit{Auth}.
+
+Pour pouvoir disposer de l'information il faut fournir ces classes un niveau au dessus dans l'arborescence de là où leur contenu est utilisé. L'application n'est pas très complexe ainsi, la plupart des widgets qui utilisent ces diverses informations se situent directement en dessous du \textit{MyApp}.
+
+\emph{ChangeNotifierProvider}
+
+Voici une partie de la méthode \textit{build()} de \textit{MyApp} - le widget initial.
+L'objet \textit{Multiprovider} est juste un \textit{syntactic sugar} pour éviter l'imbrication des divers \textit{Provider} dont dépend l'application.
+\begin{listing}[!h]
+\begin{minted}{dart}
+ @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => Auth()),
+        ChangeNotifierProvider<Services>(
+          create: (context) => Services([])),
+        ChangeNotifierProvider<Waiters>(
+          create: (context) => Waiters([])),
+        ChangeNotifierProvider<Pool>(
+          create: (context) => Pool([])),
+      ],
+\end{minted}
+\caption{Multiprovider}
+\label{code:multiprovider}
+\end{listing}
+
+Le contenu des classes: \textit{Auth}, \textit{Services}, \textit{Waiters} et \textit{Pool} est maintenant disponible dans l'ensemble de l'application au travers du \textit{context}.
+
+Le \textit{context} est une instance de \textit{BuildContext} qui se transmet de \textit{widget} en \textit{widget} leurs permettant de connaître leurs positions dans l'arborescence. Un usage courant du \textit{context} dans les applications Flutter est: \mint{dart}|Quelquechose.of(context);| permettant de retourner \textit{quelquechose} que le \textit{widget} le plus proche (relativement à celui qui fait l'appel) est en mesure de lui fournir.
 
 \section{La base de données}
 \subsection{La méthodologie REST}
