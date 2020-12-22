@@ -316,7 +316,7 @@ Cette classe \ref{code:scheduleCard} est celle qui se charge de dessiner un él�
 
 Ainsi chaque \textit{Card} ou élément de la liste est un instance de l'objet \textit{ScheduleCard}. On constat que les attributs sont \textit{final} ce qui veut dire qu'il sont constant au \textit{runtime}. Donc chaque instance de \textit{card} est immutable. Ainsi, une nouvelle instance doit remplacer la précédente si l'on souhaite mettre-à-jour l'interface. 
 
-\subsubsection{ChangeNotifier+Provider +  \& Consumer}
+\subsubsection{ChangeNotifier+Provider \& Consumer}
 
 Théoriquement, rien n'empêche de transmettre toutes les informations par constructeur. Toutefois, l'arborescence des widgets devient rapidement profonde
 et dans la situation où une certaine information est nécessaire au niveau \(n\) mais aussi au niveau \(n+i, i > 1\) il serait nécessaire de transmettre l'information
@@ -327,7 +327,7 @@ De plus, si une information n'est utile que tout en bas de l'arborescence et qu'
 \emph{ChangeNotifier}\\
 Il s'agit d'une classe dans Flutter qui implémente un objet de type \textit{Listenable} du même framework. En somme, c'est une implémentation du pattern \textit{Observer}\footnote{https://en.wikipedia.org/wiki/Observer\_pattern}. Ainsi, il est possible d'utiliser \textit{ChangeNotifier} lorsqu'une classe, susceptible de muter, doit notifier d'autres objets de ses modifications internes. 
 
-La classe Pool, celle qui gère la liste des \textit{PoolItem} - objets représentant un élément en bourse - utilise \textit{ChangeNotifier}.
+La classe \textit{Pool}, celle qui gère la liste des \textit{PoolItem} - objets représentant un élément en bourse - utilise \textit{ChangeNotifier}.
 \begin{listing}[!h]
     \begin{minted}{dart}
 class Pool with ChangeNotifier {
@@ -370,7 +370,7 @@ Comme on peut le voir, trois actions ont lieu:
     \item Notifie tous les \textit{observateurs} ou \textit{listeners} d'une modification.
 \end{itemize}
 \smallskip
-Ce type de comportement a été implémenté dans diverses méthodes des classe suivantes: \textit{Pool}, \textit{Services}, \textit{Waiters} et \textit{Auth}.
+Ce type de comportement a été implémenté dans diverses méthodes des classes suivantes: \textit{Pool}, \textit{Services}, \textit{Waiters} et \textit{Auth}.
 
 Pour pouvoir disposer de l'information il faut fournir ces classes un niveau au dessus dans l'arborescence de là où leur contenu est utilisé. L'application n'est pas très complexe ainsi, la plupart des widgets qui utilisent ces diverses informations se situent directement en dessous du \textit{MyApp}.
 
@@ -392,7 +392,7 @@ L'objet \textit{Multiprovider} est juste un \textit{syntactic sugar} pour évite
           create: (context) => Waiters([])),
         ChangeNotifierProvider<Pool>(
           create: (context) => Pool([])),
-      ],
+      ],//...
 \end{minted}
 \caption{Multiprovider}
 \label{code:multiprovider}
@@ -400,9 +400,86 @@ L'objet \textit{Multiprovider} est juste un \textit{syntactic sugar} pour évite
 
 Le contenu des classes: \textit{Auth}, \textit{Services}, \textit{Waiters} et \textit{Pool} est maintenant disponible dans l'ensemble de l'application au travers du \textit{context}.
 
-Le \textit{context} est une instance de \textit{BuildContext} qui se transmet de \textit{widget} en \textit{widget} leurs permettant de connaître leurs positions dans l'arborescence. Un usage courant du \textit{context} dans les applications Flutter est: \mint{dart}|Quelquechose.of(context);| permettant de retourner \textit{quelquechose} que le \textit{widget} le plus proche (relativement à celui qui fait l'appel) est en mesure de lui fournir.
+Le \textit{context} est une instance de \textit{BuildContext} qui se transmet de \textit{widget} en \textit{widget} leurs permettant de connaître leurs positions dans l'arborescence. Un usage courant du \textit{context} dans les applications Flutter est: \mint{dart}|Quelquechose.of(context);| permettant de retourner \textit{quelquechose} que le \textit{widget} le plus proche (relativement à celui qui fait l'appel) est en mesure de fournir.
+
+Maintenant que l'information est disponible et qu'elle est mise-à-jour si on interagit avec elle, il faut en disposer. 
+
+\emph{Provider}
+
+C'est une des façons d'accéder aux différentes ressources mises à disposition. Par exemple, lorsque un remplaçant est accepté dans l'écran \textit{poolDetails}, cette fonction ci-dessous est appelée au moment ou le bouton est pressé.
+
+\begin{listing}[!h]
+\begin{minted}{dart}
+ Future<void> _accept(context, appId) async {
+    var auth = Provider.of<Auth>(context, listen: false);
+    try {
+      await Provider.of<Pool>(context, listen: false)
+          .selectApplicant(_poolItem.id, appId, auth.token);
+      return;
+    }//...
+  }
+\end{minted}
+\caption{Provider of - example}
+\label{code:providerOf}
+\end{listing}
+
+Le premier \textit{Provider} retourne une l'instance de la classe \textit{Auth} contenant divers attributs et méthodes liés à l'authentification des utilisateurs. Entre autres, le \textit{token} d'identification nécessaire pour les requêtes à la base de données. Cela sera discuté plus en détails dans la section authentification. 
+
+Le deuxième \textit{Provider} donne accès à la ressource \textit{Pool} ainsi qu'à ses méthodes. Dont une est utilisé. \textit{selectApplicant} permet avec les identifiants d'un élément en bourse est d'un serveur y ayant postulé, de conclure la transaction en acceptant le postulant. 
+
+Cette distinction entre la logique relative à la base de données, l'affichage et la logique utilisateur permet un code réutilisable et plus performant. Tout widget/bouton permettant d'accepter un postulant par exemple, peut appeler le \textit{Provider} et utiliser les méthodes de la ressource adéquate.
+\newpage
+\emph{Consumer}
+
+Le widget \textit{Consumer} permet de "consommer" les ressources. Voici un exemple où \textit{Pool} est consommé. 
+
+\begin{listing}[!h]
+\begin{minted}{dart}
+//...
+Consumer<Pool>(
+  builder: (context, pData, _) {
+    var pool = pData.pool;
+    if (pool.isEmpty) {
+      return Center(child: Text("Aucun service en bourse pour l'instant"),);
+    }//...
+\end{minted}
+\caption{ScreenPool: Pool Consumer}
+\label{code:poolConsumer}
+\end{listing}
+
+Il est nécessaire de spécifier le type de la ressource, le \textit{provider} en a besoin pour discriminer. L'argument \textit{builder} est obligatoire. C'est la fonction qui sera appelé à chaque fois que le \textit{ChangeNotifier} change i.e la classe \textit{Pool} qui contient des \textit{PoolItem}. 
+
+L'écran \textit{Bourse aux jobs} est intimement lié aux éléments \textit{PoolItem}. De ce fait, certaines modifications de ceux-ci doivent traduire un changement dans l'interface. 
+
+Dans cet exemple, si la liste des \textit{PoolItem} est vide, alors un écran indiquant qu'il n'y a aucun élément en bourse s'affiche. Ce \textit{builder} sera appelé pour tout \textit{notifyListeners()} présent dans le code de la classe \textit{Pool}. Par exemple, accepter un postulant notifie les \textit{listeners}, provoque l'appel de cette fonction et l'affichage se modifie pour indiquer que l'élément nécessite validation d'un administrateur.
+
+Un autre exemple de \textit{Consumer} est celui de \textit{Auth}. En effet, l'affichage de l'application change radicalement suivant si l'utilisateur et authentifié ou pas. De plus, si au cours de l'utilisation cela vient à changer, l'entièreté de l'UI\footnote{User Interface - Interface Utilisateur} doit changer. Voici un autre extrait de la fonction \textit{build} de la classe \textit{MyApp}:
+
+\begin{listing}[!h]
+\begin{minted}{dart}
+//...
+ child: Consumer<Auth>(
+    builder: (ctx, auth, _) {//...
+      return MaterialApp(
+        title: 'Crazy Wolf',//...
+        home: auth.isAuth
+            ? ScreenSchedule()
+            : FutureBuilder(future: auth.tryAutoLogin(),
+                builder: (ctx, authResultSnapshot) =>
+                    authResultSnapshot.connectionState == ConnectionState.waiting
+                        ? ScreenSplash()
+                        : ScreenAuth(),), //...
+\end{minted}
+\caption{ScreenPool: Auth Consumer}
+\label{code:authConsumer}
+\end{listing}
+
+\textit{Auth} est consommé. Si l'utilisateur est authentifié alors on affiche l'écran \textit{Horaires}. Sinon, on essaye de s'auto-connecter. Si l'opération réussi, les \textit{listeners} sont notifiés ce qui implique que cette fonction est appelée à nouveau et à la question \textit{Auth.isAuth} la réponse sera vraie. Si l'opération d'auto-connexion échoue, alors l'écran de \textit{login} est affiché.
 
 \section{La base de données}
+La base de données Real Time Database est une base de données non relationnelle. Les données sont stockées au format Json.
+
+§
 \subsection{La méthodologie REST}
 \subsection{REST appliqué à Dart}
 
