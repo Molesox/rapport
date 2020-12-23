@@ -6,3 +6,7 @@
 /missfont.log
 /_minted-main
 /.vscode
+*.aux
+*.fls
+*.gz
+*.fdb_latexmk
