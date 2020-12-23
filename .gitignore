@@ -1,11 +1,8 @@
-/indent.log
-/main.bbl
-/main.blg
-/main.log
-/main.toc
-/missfont.log
-/_minted-main
+
+/_minted*
 /.vscode
+*.log
+*.toc
 *.aux
 *.fls
 *.gz
