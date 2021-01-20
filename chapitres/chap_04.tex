@@ -693,8 +693,64 @@ Service.fromJson(Map<String, dynamic> json)
 \label{code:json2service}
 \end{listing}
 
-Dans \ref{schema:services} il est dit qu'il y a une liste d'ids pour les serveurs et une autre pour les ids des doubleurs. On constate ici que ce n'est pas exactement une liste mais un \textit{map}. En effet, la Real Time database gère les listes comme des pairs {clef, valeur} où les clefs sont les indexes de la liste. Le problème est que si l'on modifie ou supprime un élément de la liste, les indexes ne sont pas mis à jour. Il s'est avéré beacoup plus simple d'utiliser \textit{map} car chaque id peut être uniquement accessible et tout reste consistent après modificiations ou suppression. On voit dans les lignes 6 et 9 de \ref{code:json2service} que seules les clefs, qui représentent les ids, du \textit{map} sont extraites. Les valeurs ne portant aucune information.  
+Dans \ref{schema:services} il est dit qu'il y a une liste d'ids pour les serveurs et une autre pour les ids des doubleurs. On constate ici que ce n'est pas exactement une liste mais un \textit{map}. En effet, la Real Time database gère les listes comme des pairs \{clef, valeur\} où les clefs sont les indexes de la liste. Le problème est que si l'on modifie ou supprime un élément de la liste, les indexes ne sont pas mis à jour. Il s'est avéré beacoup plus simple d'utiliser \textit{map} car chaque id peut être uniquement accessible et tout reste consistent après modificiations ou suppression. On voit dans les lignes 6 et 9 de \ref{code:json2service} que seules les clefs, qui représentent les ids, du \textit{map} sont extraites. Les valeurs ne portant aucune information. 
 
+Dans l'autre sens, la traduction d'une instance en objet JSON:
+
+\begin{listing}[!h]
+\begin{minted}[fontsize=\scriptsize]{dart}
+Map<String, dynamic> toJson() => {
+    'id': _id,
+    'date': _date.toIso8601String(),
+    'type': _type.toString(),
+    'waiterIds': {for (var w in _waiterIds) w: true},
+    'doublerIds': {for (var d in _doublerIds) d: true},
+    };
+\end{minted}
+\caption{Service instance to JSON}
+\label{code:service2json}
+\end{listing}
+
+Comme on le voit dans les lignes 5 et 6, les valeurs du \textit{map} sont juste des \textit{true}. Maintenant que chaque élément est facilement traduisible en JSON, on peut faire des requêtes à la base de données. Voici comment les services sont chargés en local:
+\begin{listing}[!h]
+\begin{minted}[fontsize=\scriptsize]{dart}
+Future<List<Service>> fetchService(String token) async {
+    try {
+        final response = await http.get(UrlManager.url_service + token);
+        final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
+        if (extractedData == null) {
+        _services.clear();
+        return [];
+        }
+
+        final List<Service> loadedData = [];
+        extractedData.forEach((_, value) {
+        loadedData.add(Service.fromJson(value));
+        });
+
+        _services = loadedData..sort();
+        isLoaded = true;
+
+        notifyListeners();
+        return _services;
+    } catch (error) {
+        print("[fetchService]:: " + error.toString());
+        throw error;
+    }
+}    
+\end{minted}
+\caption{Fetch services}
+\label{code:fetchService}
+\end{listing}
+
+la méthode \textit{fetchService} de la classe \textit{Services} (attention au "s") prend un token en argument. Il s'agit d'un paramètre nécéssaire pour l'authentification qui sera traîté plus en détails dans la section suivante. C'est une méthode asynchrone qui dans un future retournera une liste de services. Au travers de \textit{http} qui est un ensemble de classe disponibles dans le package http l'on fait appel à la méthode \textit{http.get} avec l'url des services. L'objet retourné est de type JSON, il faut donc en extraire le corps et le \textit{caster} en \textit{map}.
+
+Après s'être assuré que la réponse contient bel et bien des données, lignes 8 à 11, on extrait les données, en utilisant le constructeur définit dans \ref{code:json2service}, dans la variable loadedData. 
+
+La Real Time database à cause du format JSON ne garantit pas l'ordre. Ainsi, les services sont triés par date en ordre croissant. D'où l'implémentation de la classe \textit{Comparable} que l'on voit dans \ref{code:servicesClass}.
+
+\subsection{Authentification}
 
 \section{Notifications}
 
@@ -702,6 +758,5 @@ Dans \ref{schema:services} il est dit qu'il y a une liste d'ids pour les serveur
 
 \section{Sécurité}
 
-\subsection{Authentification}
 
 \subsection{Firebase rules}
