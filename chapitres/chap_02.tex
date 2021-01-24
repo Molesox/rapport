@@ -44,6 +44,28 @@ Il est donc nécéssaire de disposer d'une plateforme dynamique, standardisée, 
 
 Cette platteforme doit être accesible en tout temps depuis internet. Une application fonctionnant sur les deux principaux systèmes d'exploitations mobiles répond bien à ce besoin.
 
-En somme, cette application doit répondre aux cas d'utilisations ilustrés dans la section suivante.
-\section[Use case]{Cas d'utilisation}
-\blindtext
+En somme, cette application doit fournir les fonctionalités suivantes:
+
+\subsection*{Login}
+L'application doit permetre aux utilisateurs de s'authentifier pour accèder à l'ensemble des fonctionnalités.
+
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width= 0.8\textwidth]{uses cases/logginUC.png}
+    \end{center}
+    \caption{use case: login}
+\end{figure}
+
+Pour que l'authentification soit validée, l'utilisateur doit posséder des identifiants qu'un administrateur à créer précédement. Attention, administrateur doit aussi s'authentifier pour pouvoir créer de nouveaux utilisateurs.
+
+De plus, les utilisateurs doivent être informés si leur saisie est incorrecte.
+
+\subsection*{Visualiser les services}
+L'application doit permettre à tous les utilisateur de consulter rapidement et facilement les services dans lesquels ils travaillent. De plus, il doivent également pouvoir voir les services dans lesquels les autres utilisateurs travaillent. En effet, il n'y a là aucune information confidentielle.
+
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width= 0.8\textwidth]{uses cases/visualiser services.png}
+    \end{center}
+    \caption{use case: visualisation des services}
+\end{figure}
