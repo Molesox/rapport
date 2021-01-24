@@ -2,13 +2,13 @@
 
 Dans ce chapitre, les scénarios les plus communs
  d'utilisation de l'application Crazy Wolf sont 
- présentés au travers d'images commentées.
+ présentés au travers d'images commentées. Ces explications sont ne demandent aucune connaissance en informatique. Elle servent ainsi comme mode d'emploi pour les utilisateurs finaux, par exemple.
 
 \section[Authentification \& écran d'accueil - Scénario I]{Scénario I}
 \subsection*{Authentification \& écran d'accueil}
 Ici la serveuse Kim, qui n'a pas de privilèges, c'est-à-dire qu'elle n'est 
 ni manager ni administratrice, se connecte et accède au premier écran possible.
-Puis elle, clic sur \textit{Mes services}.
+Puis elle, clique sur \textit{Mes services}.
 
 \begin{figure}[!h]
     \centering
@@ -35,7 +35,7 @@ Puis elle, clic sur \textit{Mes services}.
 \end{figure}
 
 L'utilisateur doit dans un premier temps se connecter à l'aide d'identifiants déjà existants dans l'écran \ref{fig:login}. Une fois l'adresse mail et le mot de passe saisis, 
-l'écran \textit{mes horaires} \ref{fig:mesHoraires} s'affiche. 
+l'écran \textit{Mes horaires} \ref{fig:mesHoraires} s'affiche. 
 
 
 On y voit l'ensemble des horaires de travail. Les services sont définis par
@@ -55,7 +55,7 @@ dans \ref{fig:mesHoraires}
 
 \section[Mise en bourse d'un service - Scénario II]{Scénario II}
     \subsection*{Mise en bourse d'un service}
-    Supposons que Kim, la serveuse authentifiée ne puisse pas travailler le 17 novembre.
+    Supposons que Kim, la serveuse authentifiée, ne puisse pas travailler le 17 novembre.
     Elle souhaite donc se faire remplacer. Pour ce faire, dans l'onglet 
     \textit{Horaires}, elle peut mettre son service en bourse en glissant le 
     service en question sur la gauche.
@@ -83,14 +83,14 @@ dans \ref{fig:mesHoraires}
         \label{fig:scen02a}
     \end{figure}
 
-Une fois le glissement effectué un \textit{popup} est s'affiche \ref{fig:urgence} demandant
+Une fois le glissement effectué un \textit{popup} s'affiche \ref{fig:urgence} demandant
 à quel point le remplacement est urgent. Une fois que l'utilisateur a répondu, le service est mis
 en bourse. Un snackbar \footnote{Petite notification informative qui émerge dans la partie inférieure d'un écran} s'affiche pour notifier que l'action a réussi.
-Si l'action venait à échouer par exemple à cause d'une déconnexion à internet ou car le service se trouve déjà en bourse, un snackbar avec un message 
+Si l'action venait à échouer, par exemple à cause d'une déconnexion ou car le service se trouve déjà en bourse, un snackbar avec un message 
 d'erreur pertinent s'afficherait également.
 
-Si l'action est réussie, tous les utilisateurs de l'application sont notifiés \ref{fig:notif}d'un 
-nouveau service en bourse. La notification informe sur la disponibilité d'un service ainsi que 
+Si l'action réussit, tous les utilisateurs de l'application sont notifiés \ref{fig:notif} qu'un
+nouveau service est en bourse. La notification informe sur la disponibilité d'un service ainsi que 
 l'urgence requise à y répondre.
 
 Suit à cela, l'utilisatrice peut naviguer à l'aide du menu latéral \ref{fig:menu_sans_droits} où s'affichent les options
@@ -104,7 +104,7 @@ de navigation suivantes:
 
 \newpage
 Dans l'onglet \textit{Bourse aux jobs} \ref{fig:bourse} son service est disponible à toute personne souhaitant y postuler. 
-Cet onglet est partagé parmi tous les utilisateurs de l'application.
+Le contenu de cet onglet est partagé parmi tous les utilisateurs de l'application.
 
 \begin{figure}[!h]
     \centering
@@ -154,7 +154,7 @@ Les utilisateurs sans privilèges sont autorisés à mettre un service en bourse
     \end{figure}
     \vfill
     Alors, ils peuvent faire glisser le service auquel ils souhaitent postuler sur
-    la gauche \ref{fig:postuler}. À nouveau, si l'opération réussi, un snackbar apparaît pour l'indiquer. Si au contraire, une
+    la gauche \ref{fig:postuler}. À nouveau, si l'opération réussit, un snackbar apparaît pour l'indiquer. Si au contraire, une
     erreur se produit, notamment car l'utilisateur a déjà postulé ou une erreur de connexion, un snackbar pertinent s'affiche aussi.
     \newpage
     L'utilisateur ayant mis le service en bourse doit accepter un seul postulant. Dans \textit{Bourse aux jobs} \ref{fig:bourse} les éléments de 
@@ -260,7 +260,7 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
     \subsection*{Ajouter un service}
     Afin de créer les horaires pour le personnel, un manager ou administrateur doit créer des services. Supposons
     que c'est Ari, une \textit{manager}, qui le fait. Après s'être authentifiée, elle peut, à l'aide du menu latéral, \ref{fig:menu_manager} naviguer
-    à \textit{Ajouter service} \ref{fig:ajout_service}
+    à \textit{Ajouter service} \ref{fig:ajout_service}. Notez que ce menu n'est pas disponible pour les utilisateurs sans privilèges.
 
     \begin{figure}[!h]
         \centering
@@ -370,11 +370,11 @@ De plus, l'élément dans \textit{Bourse aux jobs} \ref{fig:bourse} est supprim�
     Cependant, deux serveurs peuvent théoriquement avoir le même prénom et le même nom de 
     famille.
 
-    Un fois tous les champs remplis, l'administrateur peut ajouter le serveur
+    Une fois tous les champs remplis, l'administrateur peut ajouter le serveur
     dans le système en appuyant sur le bouton \textit{+} dans le coin inférieur
     gauche de l'écran \textit{Ajouter serveur} \ref{fig:ajout_serveur}
 
-    Ce sont les identifiants nécessaires pour s'authentifier dans l'écran \ref{fig:login}.
+    C'est ici que sont définis les identifiants nécessaires pour s'authentifier dans l'écran \ref{fig:login}.
     \section[Doublages - Scénario VII]{Scénario VII}
         \subsection*{Doublages}
         Ici on va voir comment un \textit{administrateur} ou un \textit{manager} peut demander
