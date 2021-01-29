@@ -69,3 +69,101 @@ L'application doit permettre à tous les utilisateur de consulter rapidement et 
     \end{center}
     \caption{use case: visualisation des services}
 \end{figure}
+
+Afin de pouvoir visualiser des services, il est nécéssaire que préalablement, un manger ou un administrateur en ait ajouté dans le système. De plus, le niveau de permission n'exclu pas la possibilité qu'un manager ou administrateur aient des services dans lequels ils travaillent. Ainsi, il doive également pouvoir les visualiser.
+
+\newpage
+
+\subsection*{Mise en bourse}
+
+La mise en bourse d'un service est la fonctionalité principale de l'application. L'application doit permettre à un$\cdot$e serveur$\cdot$euse de pouvoir mettre un service, où il ou elle ne peut pas travailler, en bourse afin que d'autres utilisateurs de l'application puissent le ou la remplacer.
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width= 0.8\textwidth]{uses cases/BourseUC.png}
+    \end{center}
+    \caption{use case: mise en bourse des services}
+\end{figure}
+
+Dans un premier temps, tout utilisateur (normal, manager ou admin) doit pouvoir visualiser les services en bourse.
+De plus, tout utilisateur doit pouvoir mettre son et uniquement son service en bourse. Ce qui engendre une notification à l'ensemble des utilisateur de la disponibilité d'un nouveau service. 
+
+Tout utilisateur doit pouvoir postuler à un service. Cela même si le postulant et celui l'ayant mis en bourse sont la même personne.
+
+Seul l'utilisateur, quel qu'il soit, ayant mis le service en bourse, peut accepter un postulant. Ceci fait, seul un manager ou un administrateur doit valider ou invalider la transaction. Si l'utilisateur ayant mis le service en bourse a des privilèges il peut s'auto-valider la transaction.
+
+Afin de simplifier le diagramme, les restrictions d'un utilisateur normal ont été mise en exergue.
+
+\subsection*{Demande de renfort}
+
+Pouvoir demander du renfort - des serveurs au doublage ou encore des doubleur - est la deuxième fonctionnalité \textit{must be}. 
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[width= 0.75\textwidth]{uses cases/doublageUC.png}
+    \end{center}
+    \caption{use case: mise en bourse d'un doublage}
+\end{figure}
+
+Les serveur$\cdot$euses sans privilèges ne peuvent que postuler pour des doublages déjà en bourse. Par contre, les utilisateurs avec privilèges peuvent compte à eux faire des demandes de doublage autant pour des services dans lesquels ils ne travaillent pas comme des services dans lesquels ils travaillent. Ils ont aussi la faculté d'accepter des postulants.
+
+\section{Choix des technologies}
+Le développement d'applications
+pour smartphones est, depuis un peu plus d'une décennie, en pleine effervescence. Il existe, par
+conséquent, une multitude de frameworks, services, langages, méthodologies et paradigmes liés à leur
+développement.
+
+Ces technologies aux noms exotiques, aux logos plus brillants les uns que les autres et aux
+conférences accrocheuses qui leur sont dédiées, font que leurs différences relèvent plus
+d'une stratégie marketing visant les informaticiens, réussie que des attributs
+intrinsèques de la technologie en question.
+
+Les fonctionnalités de l'application vues précédement étant d'une complexité modérée et ne demandant pas de ressources importantes
+comme tel pourrait être le cas pour une messagerie instantanée à grand échelle ou une application
+utilisant abondamment un domaine spécifique de connaissance comme le machine learning, le traitement d'images, les jeux vidéo, etc.
+Exclu \textit{de facto} le choix d'une technologie basée exclusivement sur les performances ou sur le développement natif.
+
+N'ayant jamais fait cela auparavant, il n'y a aucune préférence de ma part pour telle ou telle technologie.
+
+Ces constats donnent lieu aux critères de sélection suivants:
+\smallskip
+\begin{itemize}
+    \item Développement cross-plateforme
+    \item Simplicité
+    \item Apprentissage d'un langage plutôt qu'une multitude
+    \item Vaste documentation et ressources d'apprentissage
+\end{itemize}
+\smallskip
+Le premier critère est celui qui réduit le plus la liste des possibilités. En effet, les frameworks
+permettant le développement d'applications pour Android et IOS ne se comptent pas en grand nombre. Il existe\footnote{Liste non exhaustive}:
+\smallskip
+\begin{itemize}
+    \item Xamarin - Microsoft
+    \item React Native - Facebook
+    \item Flutter - Google
+    \item Adobe PhoneGap - Adobe
+    \item Ionic - MIT
+\end{itemize}
+\smallskip
+Le choix parmi ces possibilités découle essentiellement de l'arbitraire. Toutefois, Ionic a été exclu car il est nécessaire de maîtriser HTML5 et par conséquent CSS mais encore Angular JS. Ce qui contredit le 3ème critère.
+
+React native et Xamarin ont été exclus pour des raisons similaires. I.e. l'apprentissage de divers langages.
+
+Finalement, à la suite d’un cours de Academind d'une durée de 40 heures portant sur les aspects les plus basiques du développement jusqu'au déploiement de l'application en passant par le routage, la gestion de requêtes http, la connexion à tout un écosystème de bases de données, l'utilisation de caméra et géolocalisation, et même sur comment changer le logo de l'application, le choix s'est porté sur Flutter.
+
+Flutter est un framework crée par Google. Ce dernier offre, pour les applications, le service Firebase qui englobe :
+
+\smallskip
+\begin{itemize}
+    \item Cloud Firestore
+    \item Real time database
+    \item Functions
+    \item Machine learning
+    \item Cloud messaging
+    \item \dots
+\end{itemize}
+\smallskip
+Firebase s'intègre, par conception, particulièrement bien et facilement à Flutter. Même s'ils sont
+indépendants, leurs utilisation conjointe forme un seul écosystème plus facile à appréhender. Ainsi pour la
+base de données, le choix a été la Real time database. Car cette dernière fournit une API REST.
+
+De plus, toujours dans cet écosystème, \textit{Cloud messaging} est utilisé pour l'envoi des notifications et \textit{Functions} pour
+effectuer des actions côté serveur lorsque la base de données subit des modifications.

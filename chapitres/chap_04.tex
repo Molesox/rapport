@@ -7,68 +7,6 @@ comment elles fonctionnent et, une à une, comment cela
 s’est traduit dans l'implémentation final de l'application.
 Les exemples de codes sont tirés de l'application.
 
-\section{Choix des technologies}
-Le développement d'applications
-pour smartphones est, depuis un peu plus d'une décennie, en pleine effervescence. Il existe, par
-conséquent, une multitude de frameworks, services, langages, méthodologies et paradigmes liés à leur
-développement.
-
-Ces technologies aux noms exotiques, aux logos plus brillants les uns que les autres et aux
-conférences accrocheuses qui leur sont dédiées, font que leurs différences relèvent plus
-d'une stratégie marketing visant les informaticiens, réussie que des attributs
-intrinsèques de la technologie en question.
-
-L'application étant d'une complexité modérée et ne demandant pas de ressources importantes
-comme tel pourrait être le cas pour une messagerie instantanée à grand échelle ou une application
-utilisant abondamment un domaine spécifique de connaissance comme le machine learning, le traitement d'images, les jeux vidéo, etc.
-Exclu \textit{de facto} le choix d'une technologie basée exclusivement sur les performances ou sur le développement natif.
-
-N'ayant jamais fait cela auparavant, il n'y a aucune préférence de ma part pour telle ou telle technologie.
-
-Ces constats donnent lieu aux critères de sélection suivants:
-\smallskip
-\begin{itemize}
-    \item Développement cross-plateforme
-    \item Simplicité
-    \item Apprentissage d'un langage plutôt qu'une multitude
-    \item Vaste documentation et ressources d'apprentissage
-\end{itemize}
-\smallskip
-Le premier critère est celui qui réduit le plus la liste des possibilités. En effet, les frameworks
-permettant le développement d'applications pour Android et IOS ne se comptent pas en grand nombre. Il existe\footnote{Liste non exhaustive}:
-\smallskip
-\begin{itemize}
-    \item Xamarin - Microsoft
-    \item React Native - Facebook
-    \item Flutter - Google
-    \item Adobe PhoneGap - Adobe
-    \item Ionic - MIT
-\end{itemize}
-\smallskip
-Le choix parmi ces possibilités découle essentiellement de l'arbitraire. Toutefois, Ionic a été exclu car il est nécessaire de maîtriser HTML5 et par conséquent CSS mais encore Angular JS. Ce qui contredit le 3ème critère.
-
-React native a été exclu pour des raisons similaires. I.e. l'apprentissage de divers langages.
-
-Finalement, à la suite d’un cours de Academind d'une durée de 40 heures portant sur les aspects les plus basiques du développement jusqu'au déploiement de l'application en passant par le routage, la gestion de requêtes http, la connexion à tout un écosystème de bases de données, l'utilisation de caméra et géolocalisation, et même sur comment changer le logo de l'application, le choix s'est porté sur Flutter.
-
-Flutter est un framework crée par Google. Ce dernier offre, pour les applications, le service Firebase qui englobe :
-
-\smallskip
-\begin{itemize}
-    \item Cloud Firestore
-    \item Real time database
-    \item Functions
-    \item Machine learning
-    \item Cloud messaging
-    \item \dots
-\end{itemize}
-\smallskip
-Firebase s'intègre, par conception, particulièrement bien et facilement à Flutter. Même s'ils sont
-indépendants, leurs utilisation conjointe forme un seul écosystème plus facile à appréhender. Ainsi pour la
-base de données, le choix a été la Real time database. Car cette dernière fournit une API REST.
-
-De plus, toujours dans cet écosystème, \textit{Cloud messaging} est utilisé pour l'envoi des notifications et \textit{Functions} pour
-effectuer des actions côté serveur lorsque la base de données subit des modifications.
 
 \section{Flutter}
 Flutter est un \textit{Software Developpement Kit} (SDK) développé par Google permettant de concevoir
