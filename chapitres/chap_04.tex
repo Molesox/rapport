@@ -1,7 +1,7 @@
 
 \chapter[Éléments de programmation]{Éléments de programmation}
-Dans ce chapitre sont présentés les technologies, paradigmes
-et techniques liés à l'implémentation informatique de
+Dans ce chapitre sont présentées les technologies, paradigmes
+et techniques liées à l'implémentation informatique de
 l'application. Notamment, lesquelles ont été utilisées,
 comment elles fonctionnent et, une à une, comment cela
 s’est traduit dans l'implémentation final de l'application.
@@ -33,16 +33,15 @@ Voici un exemple minimal d'un \textit{Hello world} en Dart:
 \begin{listing}[!h]
     \begin{minted}{dart}
             void main() => print('Hello, World!');
-        \end{minted}
-    \label{code:helloWorld}
-    \caption{Hello world}
+    \end{minted}
+        \caption{Hello World \label{listing:3}}
 \end{listing}
 \newpage
 
 \subsection{Architecture}
-Pour mieux comprendre les différents éléments de programmation qui vont suivre, il est intérressant de s'attarder
-un peu sur l'architcture interne du framework.
-Flutter a un architecture en couches (\textit{layers}).
+Pour mieux comprendre les différents éléments de programmation qui vont suivre, il est intéressant de s'attarder
+un peu sur l'architecture interne du framework.
+Flutter a une architecture en couches (\textit{layers}).
 \begin{figure}[!h]
     \begin{center}
         \begin{tikzpicture}
@@ -60,17 +59,17 @@ Flutter a un architecture en couches (\textit{layers}).
     \label{fig:layers}
 \end{figure}
 
-Le \textit{layer} \textit{foundation} offre les clases de bases du framework sans avoir à tenir compte
+Le \textit{layer} \textit{foundation} offre les classes de bases du framework sans avoir à tenir compte
 de l'\textit{engine} écrit en C++ qui se trouve en dessous. Il offre aussi, au moyen de \textit{animation}, \textit{painting}
-et \textit{gestures} les bases pour l'animation, le dessin et la detection de mouvement sur l'écran.
+et \textit{gestures} les bases pour l'animation, le dessin et la détection de mouvement sur l'écran.
 
 Le \textit{layer} \textit{rendering} offre une abstraction permettant de gérer l'affichage des éléments.
 Il va construire des objets (dérivés des widgets principalement) organisés sous forme d'arbre dynamique qui peuvent être affichés à l'écran.
 
-Le \textit{layer} \textit{widgets} est une abstraction au dessus de \textit{rendering} qui respecte le pattern de conception composite. Ainsi, chaque objet dans le \textit{layer} \textit{rendering}
+Le \textit{layer} \textit{widgets} est une abstraction au-dessus de \textit{rendering} qui respecte le pattern de conception composite. Ainsi, chaque objet dans le \textit{layer} \textit{rendering}
 lui correspond une classe dans le \textit{layer} \textit{widgets}.
 
-Le \textit{layer} \textit{material} et \textit{cupertino} sont un ensemble de classes prédéfinies et personalisables qui implémentent tout un catalogue
+Le \textit{layer} \textit{material} et \textit{cupertino} sont un ensemble de classes prédéfinies et personnalisables qui implémentent tout un catalogue
 de widgets avec respectivement le style material design d'Android et le design propre à IOS.
 
 \subsection{Les widgets}
@@ -88,8 +87,8 @@ Flutter. Voici un exemple:
     \label{code:textWidget}
 \end{listing}
 
-Comme le code le sous-entend, les widgets peuvent s'encapsuler les uns dans les autres. Ainsi,
-Le widget \textit{Text} accepte dans sont constructeur une chaine de caractères "Crazy Wolf" et un style qui est lui-même un
+Comme le code \autoref{code:textWidget} le sous-entend, les widgets peuvent s'encapsuler les uns dans les autres. Ainsi,
+Le widget \textit{Text} accepte dans son constructeur une chaine de caractères "Crazy Wolf" et un style qui est lui-même un
 widget \textit{TextStyle}. À son tour, il accepte, entre autres, une taille et une police d'écriture en argument.
 
 Cette encapsulation n'est pas un choix arbitraire mais trahi, comme vu auparavant, l'architecture du framework. En effet,
@@ -100,10 +99,10 @@ On en déduit que Flutter est un framework déclaratif plutôt	qu'impératif. En
 afin de varier l'affichage, Flutter construit de nouvelles instances de widgets selon les besoins.
 
 La philosophie sous-jacente du framework est de composer de petits widgets aux fonctionnalités de bases afin de
-créer une fonctionalité complexe.
+créer une fonctionnalité complexe.
 
 Le terme widget englobe une multitude de verbes. Un widget peut ne pas avoir de représentation en tant que tel
-mais peut offrire un positionement, une transformation, une taille, interaction ave l'utilisateur, animation,~\dots
+mais peut offrir un positionnement, une transformation, une taille, interaction avec l'utilisateur, animation,~\dots
 
 Par exemple, le widget \textit{Center} centre un autre widget en argument au centre de l'écran, dans la mesure de l'espace restant disponible.
 \begin{listing}[h]
@@ -114,8 +113,8 @@ Par exemple, le widget \textit{Center} centre un autre widget en argument au cen
     \label{code:center}
 \end{listing}
 
-Les widget sont des classes immutables, c'est-à-dire qu'une fois l'objet instancié, il n'est plus possible d'en modifier le contenu.
-Il existe essentiellement deux types de widgets dans Flutter: ceux qui on un état: \textit{StatefulWidget} et ceux qui n'ont en pas:
+Les widgets sont des classes immutables, c'est-à-dire qu'une fois l'objet instancié, il n'est plus possible d'en modifier le contenu.
+Il existe essentiellement deux types de widgets dans Flutter: ceux qui ont un état: \textit{StatefulWidget} et ceux qui n'ont en pas:
 les \textit{StatelessWidget}.
 
 \subsubsection*{StatelessWidget}
@@ -136,13 +135,13 @@ Ce sont les widgets dont les propriétés ne varient pas dans le temps. Par exem
 Ici, \textit{ScreenSplash} hérite de \textit{StatelessWidget}. Afin, de déterminer la représentation visuelle d'un widget,
 il faut \textit{override} la méthode \textit{build()} de \textit{StatelessWidget}. Ainsi, \textit{ScreenSplash} retourne un \textit{Scaffold}
 qui est un écran d'affichage basique respectant le style material design. À son tour,
-\textit{Scaffold} a une bare de progression circulaire (le \textit{CircularProgressIndicator}) au centre (\textit{Center}) de l'écran.
+\textit{Scaffold} a une barre de progression circulaire (le \textit{CircularProgressIndicator}) au centre (\textit{Center}) de l'écran.
 
 Cette classe représente l'écran affiché à chaque fois qu'une requête à la base de données se fait. Elle permet à l'utilisateur de savoir qu'une action
 est en cours et qu'il doit patienter.
 \newpage
 \subsubsection*{StatefulWidget}
-Ce sont les widgets dont les propriétés peuvent varier dans le temps. Ces widgets ont un état, or ils sont immutable. C'est pourquoi ils sauvegardent
+Ce sont les widgets dont les propriétés peuvent varier dans le temps. Ces widgets ont un état, or ils sont immutables. C'est pourquoi ils sauvegardent
 l'état dans une classe séparée  sous-classe de \textit{State}.
 
 Quand l'état change à l'aide de l'appel de fonction \textit{setState()}, la méthode \textit{build} est appelée et l'interface est mise-à-jour. En guise d'exemple, voici une partie du code source
@@ -164,9 +163,9 @@ class ScreenScheduleView extends StatefulWidget {
     \label{code:screenHoraires}
 \end{listing}
 
-La classe \textit{ScheduleView} hérite d'un \textit{StatefulWidget}. Dans la classe d'état il y a l'attribut: \textit{selectedIndex}. L'indice selectionné a pour valeur 0 à la construction de l'instance.
-Si la fonction \textit{onItemTapped(int index)} est appellée avec un entier en argument alors, à l'aide de la fonction \textit{setState} l'état est modifié
-et la fonction \textit{build()} de \textit{ScreenScheduleViewSate} est appelée. Ainis le \textit{widget} est reconstruit en fonction de son nouvel état.
+La classe \textit{ScheduleView} hérite d'un \textit{StatefulWidget}. Dans la classe d'état il y a l'attribut: \textit{selectedIndex}. L'indice sélectionné a pour valeur 0 à la construction de l'instance.
+Si la fonction \textit{onItemTapped(int index)} est appelée avec un entier en argument alors, à l'aide de la fonction \textit{setState} l'état est modifié
+et la fonction \textit{build()} de \textit{ScreenScheduleViewSate} est appelée. Ainsi, le \textit{widget} est reconstruit en fonction de son nouvel état.
 
 \begin{listing}[h]
     \begin{minted}{dart}
@@ -190,21 +189,21 @@ Widget build(BuildContext context) {
 
 Scaffold accepte un menu de navigation au bas de la page. Celui-ci est un widget: \textit{BottomNavigationBar}. Ce widget prend en construction:
 \begin{itemize}
-    \item une fonction qui est appelée lorsque une \textit{tap} a été detecté sur l'un des deux icons définis dans la liste \textit{Items}.
-    \item un index qui définit lequel des éléments de la liste est actuellement séléctionné.
+    \item une fonction qui est appelée lorsqu'une \textit{tap} a été détectée sur l'un des deux icons définis dans la liste \textit{Items}.
+    \item un index qui définit lequel des éléments de la liste est actuellement sélectionné.
     \item une liste de \textit{widgets} de type \textit{BottomNavigationBarItem}.
 \end{itemize}
 Le premier élément de la liste i.e. "Mes services" a pour index 0. Et "Tous les horaires" 1. Par défaut, \textit{selectedIndex} vaut 0. Dans un premier temps c'est "Mes services" qui est affiché.
 
-Lorsque l'utilisateur clic sur un icône , \textit{BottomNavigationBar} va appeler la fonction \textit{onItemTapped} définie dans le code \ref{code:screenHoraires} avec
-l'index de l'icône en question en argument. \textit{onItemTapped} va changer l'état du widget et par extension la valeur de \textit{selectedIndex}. L'état ayant changer la fonction
+Lorsque l'utilisateur clic sur un icône, \textit{BottomNavigationBar} va appeler la fonction \textit{onItemTapped} définie dans le code \autoref{code:screenHoraires} avec
+l'index de l'icône en question en argument. \textit{onItemTapped} va changer l'état du widget et par extension la valeur de \textit{selectedIndex}. L'état ayant changé la fonction
 \textit{build} est appelée et donc \textit{BottomNavigationBar} redessiné avec un \textit{currentIndex} potentiellement différent. Traduisant ainsi
-un affichage différent et l'icon sélectionné apparaîtrait en orange.
+un affichage différent et l'icône sélectionné apparaîtrait en orange.
 
 \subsection{Flux de données}
 Dans la partie précédente, on constate que la gestion de l'état des widgets peut vite devenir encombrante. En effet, dans l'exemple,
 l'utilisation d'un \textit{StatefulWidget} est naturelle, l'information étant un index n'est ni complexe ni lourde. Or comment, partager des
-données complexes entre les différents widgets?
+données complexes entre les différents widgets ?
 
 En général on fait la distinction entre l'état éphémère et l'état de l'application.
 \smallskip
@@ -221,7 +220,7 @@ ont été utilisées.
 
 Pour transmettre les données d'un widget à ses enfants soit la transmission s'est faite par constructeur soit à l'aide des classes \textit{ChangeNotifier}, \textit{ChangeNotifierProvider} et \textit{Consumer}.
 
-Pour transmettre les données d'un enfant à un parent, les callbacks on été utilisés.
+Pour transmettre les données d'un enfant à un parent, les callbacks ont été utilisés.
 
 \subsubsection{Par constructeur}
 Il s'agit à la fois de la méthode la plus répandue comme la plus simple. Voici un exemple:
@@ -241,18 +240,18 @@ class ScheduleCard extends StatelessWidget {
     \caption{ScheduleCard, par constructeur}
     \label{code:scheduleCard}
 \end{listing}
-Cette classe \ref{code:scheduleCard} est celle qui se charge de dessiner un élément de la liste des horaires \ref{fig:horaires}. Son widget parent se charge de générer la liste dans son ensemble ainsi que d'autres implémentations de la logique de l'application. De plus, le parent transmet par constructeur à \textit{ScheduleCard} les informations suivantes:
+Cette classe \autoref{code:scheduleCard} est celle qui se charge de dessiner un élément de la liste des horaires \autoref{fig:horaires}. Son widget parent se charge de générer la liste dans son ensemble ainsi que d'autres implémentations de la logique de l'application. De plus, le parent transmet par constructeur à \textit{ScheduleCard} les informations suivantes:
 \smallskip
 \begin{itemize}
     \item [doesUserWorkIn] : une variable booléenne indiquant si l'utilisateur actuellement authentifié travail dans le service en question. Ceci permet de changer la couleur de fond (orange ou blanc).
-    \item [type] : le type de service i.e midi ou soir.
+    \item [type] : le type de service i.e. midi ou soir.
     \item [waiters]: la liste des objets serveurs qui y travaillent.
     \item [doublers]: la liste des objets serveurs qui doublent dans ce service.
     \item [service]: l'objet service en question.
 \end{itemize}
 \smallskip
 
-Ainsi chaque \textit{Card} ou élément de la liste est un instance de l'objet \textit{ScheduleCard}. On constat que les attributs sont \textit{final} ce qui veut dire qu'il sont constant au \textit{runtime}. Donc chaque instance de \textit{card} est immutable. Ainsi, une nouvelle instance doit remplacer la précédente si l'on souhaite mettre-à-jour l'interface. 
+Ainsi chaque \textit{Card} ou élément de la liste est une instance de l'objet \textit{ScheduleCard}. On constat que les attributs sont \textit{final} ce qui veut dire qu'il sont constant au \textit{runtime}. Donc chaque instance de \textit{card} est immutable. Ainsi, une nouvelle instance doit remplacer la précédente si l'on souhaite mettre-à-jour l'interface. 
 
 \subsubsection{ChangeNotifier+Provider \& Consumer}
 
@@ -260,7 +259,7 @@ Théoriquement, rien n'empêche de transmettre toutes les informations par const
 et dans la situation où une certaine information est nécessaire au niveau \(n\) mais aussi au niveau \(n+i, i > 1\) il serait nécessaire de transmettre l'information
 dans tous les widgets intermédiaires alors qu'ils n'en n'ont pas besoin.
 
-De plus, si une information n'est utile que tout en bas de l'arborescence et qu'elle a été transmise par constructeur, alors tous les widgets intermédiaires seront reconstruit inutilement.
+De plus, si une information n'est utile que tout en bas de l'arborescence et qu'elle a été transmise par constructeur, alors tous les widgets intermédiaires seront reconstruits inutilement.
 
 \emph{ChangeNotifier}\\
 Il s'agit d'une classe dans Flutter qui implémente un objet de type \textit{Listenable} du même framework. En somme, c'est une implémentation du pattern \textit{Observer}\footnote{https://en.wikipedia.org/wiki/Observer\_pattern}. Ainsi, il est possible d'utiliser \textit{ChangeNotifier} lorsqu'une classe, susceptible de muter, doit notifier d'autres objets de ses modifications internes. 
@@ -281,7 +280,7 @@ class Pool with ChangeNotifier {
 
 Le mot clef \textit{with} veut dire qu'il s'agit d'un \textit{mixin}. Les \textit{mixin} permettent de combler l'absence d'héritage multiple. Ainsi, il est possible de réutiliser du code d'une classe dans de multiples hiérarchies de classes. Attention, ce n'est pas une interface dont il faut implémenter les méthodes.
 \newpage
-Voici, concrètement comment ça s'utilise. \textit{deletePoolItem} est une méthode de la classe \textit{Pool}. Lorsqu'un service mis en bourse est supprimé, cette méthode est appelée. Il s'agit d'une méthode asynchrone qui retourne, dans un future, rien.
+Voici, concrètement comment ça s'utilise. \textit{deletePoolItem} est une méthode de la classe \textit{Pool}. Lorsqu'un service mis en bourse est supprimé, cette méthode est appelée. Il s'agit d'une méthode asynchrone qui retourne, dans un futur, rien.
 
 \begin{listing}[!h]
 \begin{minted}{dart}
@@ -311,7 +310,7 @@ Comme on peut le voir, trois actions ont lieu:
 \smallskip
 Ce type de comportement a été implémenté dans diverses méthodes des classes suivantes: \textit{Pool}, \textit{Services}, \textit{Waiters} et \textit{Auth}.
 
-Pour pouvoir disposer de l'information il faut fournir ces classes un niveau au dessus dans l'arborescence de là où leur contenu est utilisé. L'application n'est pas très complexe ainsi, la plupart des widgets qui utilisent ces diverses informations se situent directement en dessous du \textit{MyApp}.
+Pour pouvoir disposer de l'information il faut fournir ces classes un niveau au-dessus dans l'arborescence de là où leur contenu est utilisé. L'application n'est pas très complexe ainsi, la plupart des widgets qui utilisent ces diverses informations se situent directement en dessous du \textit{MyApp}.
 
 \emph{ChangeNotifierProvider}
 
@@ -345,7 +344,7 @@ Maintenant que l'information est disponible et qu'elle est mise-à-jour si on in
 
 \emph{Provider}
 
-C'est une des façons d'accéder aux différentes ressources mises à disposition. Par exemple, lorsque un remplaçant est accepté dans l'écran \textit{poolDetails}, cette fonction ci-dessous est appelée au moment ou le bouton est pressé.
+C'est une des façons d'accéder aux différentes ressources mises à disposition. Par exemple, lorsqu'un remplaçant est accepté dans l'écran \textit{poolDetails}, cette fonction ci-dessous est appelée au moment où le bouton est pressé.
 
 \begin{listing}[!h]
 \begin{minted}{dart}
@@ -386,7 +385,7 @@ Consumer<Pool>(
 \label{code:poolConsumer}
 \end{listing}
 
-Il est nécessaire de spécifier le type de la ressource, le \textit{provider} en a besoin pour discriminer. L'argument \textit{builder} est obligatoire. C'est la fonction qui sera appelé à chaque fois que le \textit{ChangeNotifier} change i.e la classe \textit{Pool} qui contient des \textit{PoolItem}. 
+Il est nécessaire de spécifier le type de la ressource, le \textit{provider} en a besoin pour discriminer. L'argument \textit{builder} est obligatoire. C'est la fonction qui sera appelé à chaque fois que le \textit{ChangeNotifier} change i.e. la classe \textit{Pool} qui contient des \textit{PoolItem}. 
 
 L'écran \textit{Bourse aux jobs} est intimement lié aux éléments \textit{PoolItem}. De ce fait, certaines modifications de ceux-ci doivent traduire un changement dans l'interface. 
 
@@ -419,7 +418,7 @@ Un autre exemple de \textit{Consumer} est celui de \textit{Auth}. En effet, l'af
 Un \textit{callback} est par définition une fonction ou méthode qui est donnée en argument à une autre fonction ou méthode. 
 Dans cette application les \textit{callbacks} ont été utilisés pour transmettre une valeur d'un \textit{widget} enfant à son parent sans en changer l'état. 
 
-Prennons, l'example de l'écran \textit{Ajouter service} qui va se charger de faire la requête à la base de donnée avec toutes les information qui permettent d'y ajouter un service. Pour la construction de cette écran, il y a un parent \textit{Statefull widget} : \textit{ScreenAddService} et plusieurs enfants. Parmis ces enfants, seul le \textit{widget} \textit{TypeSelector} sera ilustré. En effet, ils implémentent tous le même mécanisme et les seules variations sont de type graphiques.
+Prenons, l'exemple de l'écran \textit{Ajouter service} qui va se charger de faire la requête à la base de données avec toutes les information qui permettent d'y ajouter un service. Pour la construction de cet écran, il y a un parent \textit{Statefull widget} : \textit{ScreenAddService} et plusieurs enfants. Parmis ces enfants, seul le \textit{widget} \textit{TypeSelector} sera ilustré. En effet, ils implémentent tous le même mécanisme et les seules variations sont de type graphique.
 
 Voici un extrait de la classe \textit{ScreenAddService}:
 \begin{listing}[!h]
@@ -435,7 +434,7 @@ class _ScreenAddServiceState extends State<ScreenAddService> {
 \label{code:addServiceCallback}
 \end{listing}
 
-Cette classe a un attribut de type \textit{ServiceType}. A l'intérieur de cette classe, un \textit{widget} \textit{TypeSelector} dessinne les boutons "midi" et "soir" est créé. L'arguemnt fournit au constructeur est une fonction. Celle-ci prend un paramètre \textit{val} et retourne l'affectation de la valuer de \textit{val} dans l'attribut \textit{\_selectedType}. En d'autres termes, \textit{ScreenAddService} délègue l'affectation de son attribut \textit{\_selectedType} à l'objet de type \textit{TypeSelector}. 
+Cette classe a un attribut de type \textit{ServiceType}. A l'intérieur de cette classe, un \textit{widget} \textit{TypeSelector} dessine les boutons "midi" et "soir" est créé. L'argumemnt fournit au constructeur est une fonction. Celle-ci prend un paramètre \textit{val} et retourne l'affectation de la valuer de \textit{val} dans l'attribut \textit{\_selectedType}. En d'autres termes, \textit{ScreenAddService} délègue l'affectation de son attribut \textit{\_selectedType} à l'objet de type \textit{TypeSelector}. 
 
 \begin{listing}[!h]
 \begin{minted}[fontsize=\scriptsize]{dart}
@@ -458,19 +457,19 @@ class _TypeSelectorState extends State<TypeSelector> {
 \end{listing}
 \textit{TypeSelctor} quant à lui définit un type : \textit{ServiceValue}. Ce type est une fonction qui prend en argument un \textit{ServiceType} et qui retourne la même chose. En effet, si l'on veut pouvoir faire l'affectation dans le \textit{widget} parent il faut que les types correspondent.
 
-Finalement, cette fonction est assignée à la variable \textit{select}. Lorsqu'un utilisateur appuye sur l'un des \textit{ChoiceChip} - widgets chargés de dessiner les boutons - la fonction définie dans \textit{onSelected} est appelée avec le type séléctionné en argument. A la ligne 12, l'appel de la fonction déléguée est fait avec le susdit type. On constat que dans le widget enfant, la fonction \textit{setState} est aussi invoquée pour changer l'affichage des boutons.
+Finalement, cette fonction est assignée à la variable \textit{select}. Lorsqu'un utilisateur appuie sur l'un des \textit{ChoiceChip} - widgets chargés de dessiner les boutons - la fonction définie dans \textit{onSelected} est appelée avec le type séléctionné en argument. A la ligne 12, l'appel de la fonction déléguée est fait avec le susdit type. On constat que dans le widget enfant, la fonction \textit{setState} est aussi invoquée pour changer l'affichage des boutons.
 
 \section{La base de données}
-La base de données Real Time Database est une base de données non relationnelle. Les données sont stockées au format JSON. La base de donnée a trois objets: \textit{Waiters}, \textit{Services} et \textit{Pool}. Pour serveurs, services, et éléments en bourse respectivement.
+La base de données Real Time Database est une base de données non relationnelle. Les données sont stockées au format JSON. La base de données a trois objets: \textit{Waiters}, \textit{Services} et \textit{Pool}. Pour serveurs, services, et éléments en bourse respectivement.
 
 Nous allons parcourir chacun d'entre eux dans l'ordre.
 
 \subsection*{Waiters}
-Il faut savoir que pour créer de nouveaux utilisateurs, il faut faire une requête \textit{POST} avec le nom d'utilisateur, l'email et le mot de passe à une url spéciale dédiée aux intéractions de type administrateur. Cette requête retourne un numéro d'identification (id). Ce sont ces identifiants qui vont permettre aux utilisateurs de se \textit{logger} à l'écran \ref{fig:login}. Ils sont crées uniquement à travers l'écran \ref{fig:ajout_serveur}.
+Il faut savoir que pour créer de nouveaux utilisateurs, il faut faire une requête \textit{POST} avec le nom d'utilisateur, l'email et le mot de passe à une url spéciale dédiée aux interactions de type administrateur. Cette requête retourne un numéro d'identification (id). Ce sont ces identifiants qui vont permettre aux utilisateurs de se \textit{logger} à l'écran \autoref{fig:login}. Ils sont créés uniquement à travers l'écran \autoref{fig:ajout_serveur}.
 
 Dans cette implémentation, les utilisateurs et les serveurs (\textit{waiters}) représentent la même entité.
 
-Une fois que la création de l'utilisateur a réussie et que l'on dipose de son id, une deuxième requête \textit{POST}, cette fois ci, à la base de données, est faite. Cette deuxième requête doit respecter le schéma suivant : 
+Une fois que la création de l'utilisateur a réussie et que l'on dispose de son id, une deuxième requête \textit{POST}, cette fois ci, à la base de données, est faite. Cette deuxième requête doit respecter le schéma suivant : 
 
 \begin{listing}[!h]
 \begin{minted}[fontsize=\scriptsize]{json}
@@ -503,9 +502,9 @@ Une fois que la création de l'utilisateur a réussie et que l'on dipose de son 
 \end{listing}
 
 
-Les propriétés correspondent aux champs dans \ref{fig:ajout_serveur}. Le \textit{userId} et le numéro d'indentification retourné par la première requête \textit{POST}.
+Les propriétés correspondent aux champs dans \ref{fig:ajout_serveur}. Le \textit{userId} et le numéro d'identification retourné par la première requête \textit{POST}.
 
-Comme il est uniquement possible d'ajouter des serveurs en étant administrateur et que l'on connait le role d'un utilisateur en regardant dans la base de données, il a fallu que le premier serveur soit ajouté manuellement depuis le navigateur.
+Comme il est uniquement possible d'ajouter des serveurs en étant administrateur et que l'on connait le rôle d'un utilisateur en regardant dans la base de données, il a fallu que le premier serveur soit ajouté manuellement depuis le navigateur.
 \newpage
 \subsection*{Services}
 Représentent les objets définissant un service. C'est-à-dire, une date, un type, les serveurs et doubleurs qui y travaillent. Les requêtes \textit{POST} pour populer la base de données doivent respecter le schéma suivant:
@@ -548,10 +547,10 @@ Représentent les objets définissant un service. C'est-à-dire, une date, un ty
 
 On constate qu'un service doit au moins avoir un serveur. L'objet \textit{Waiter} n'est pas stocké en tant que tel mais juste le \textit{userId} qui le représente. 
 
-En d'autres termes, les service "ont" des serveurs. Dans un premier temps la relation \textit{many-to-many}, i.e que les serveurs "aïent" eux aussi des services fut envisagée. Cependant, cette pratique est déconseillé dans les bases de données non relationnelles. Ainsi la documentation de Real Time Database conseille d'applatir les données. 
+En d'autres termes, les services "ont" des serveurs. Dans un premier temps la relation \textit{many-to-many}, i.e. que les serveurs "aient" eux aussi des services fut envisagée. Cependant, cette pratique est déconseillée dans les bases de données non relationnelles. Ainsi la documentation de Real Time Database conseille d'aplatir les données. 
 \newpage
 \subsection*{Pool}
-Cet objet représente les éléments mis en bourse. Ainsi ils sont crées quand une demande de remplacement ou de doublage est faite. Chacun des élément respect le schéma suivant:
+Cet objet représente les éléments mis en bourse. Ainsi ils sont créés quand une demande de remplacement ou de doublage est faite. Chacun des élément respect le schéma suivant:
 \begin{listing}[!h]
 \begin{minted}[fontsize=\scriptsize]{json}
 {
@@ -595,7 +594,7 @@ Cet objet représente les éléments mis en bourse. Ainsi ils sont crées quand 
 \label{schema:services}
 \end{listing}
 
-On voit que dans la base de données, il y a l'attribut \textit{needValidation}. Celui-ci est modifié lorsqu'un remplaçant a été accépté. Le champs \textit{applicantsIds} et \textit{selectedAppId} ne sont pas obligatoires. Ils sont ajouté seulement lorsque des utilisateurs postulent au service mis en bourse.
+On voit que dans la base de données, il y a l'attribut \textit{needValidation}. Celui-ci est modifié lorsqu'un remplaçant a été accepté. Le champs \textit{applicantsIds} et \textit{selectedAppId} ne sont pas obligatoires. Ils sont ajoutés seulement lorsque des utilisateurs postulent au service mis en bourse.
 
 \subsection{La méthodologie REST}
 En l'an 2000 Roy Thomas Fielding publie sa thèse \textit{Architectural Styles and the Design of Network-based Software Architectures} qui entre autres définit le standard \textit{Representational State Transfer} élégament abrégé \textit{REST}. Dans cette thèse, M. Fielding fait le constat qu'il existe essentiellement deux façons de concevoir une architecture software:
@@ -608,23 +607,23 @@ Concernant les services web, M.Fielding conçoit \textit{REST} en identifiant le
 \smallskip
 \begin{itemize}
     \item \textbf{Client-Server} : l'interface utilisateur et séparée du stockage des données.
-    \item \textbf{Stateless} : le serveur ne garde pas d'état concernant les clients. En d'autre termes, lorsqu'une requête est addréssée au serveur, elle contient toutes les informations nécéssaires pour y répondre.
-    \item \textbf{Cache} : le serveur définit explicitement ou implicitement si les données d'une requête sont \textit{cacheable}. Si elles le sont, alors le client en garde une copie temporaire suite à une requête. Evitant ainsi des répétitions de requêtes. L'avantage est que le système est plus performant car les requêtes sont réduites. L'inconvénient et que l'état des données dans le serveur et chez le client peut différer.
+    \item \textbf{Stateless} : le serveur ne garde pas d'état concernant les clients. En d'autres termes, lorsqu'une requête est addréssée au serveur, elle contient toutes les informations nécéssaires pour y répondre.
+    \item \textbf{Cache} : le serveur définit explicitement ou implicitement si les données d'une requête sont \textit{cacheable}. Si elles le sont, alors le client en garde une copie temporaire suite à une requête. Évitant ainsi des répétitions de requêtes. L'avantage est que le système est plus performant car les requêtes sont réduites. L'inconvénient et que l'état des données dans le serveur et chez le client peut différer.
     \item \textbf{Uniform Interface} : le serveur et le client suivent un protocole pour intéragir avec les données. Deux composants de base forment cette contrainte:
     \smallskip
     \begin{itemize}
         \item \textbf{Identification} : toutes les ressources sont uniquement identifiées.
-        \item \textbf{Manipulation} : un ensemble d'opérations sur les données dont les résultat sont prévisibles.
+        \item \textbf{Manipulation} : un ensemble d'opérations sur les données dont les résultats sont prévisibles.
     \end{itemize}
     \smallskip
-    \item \textbf{Layered} : L'enseble du service offert est composé de couches indépendantes et communicantes entre elles.
+    \item \textbf{Layered} : L'ensemble du service offert est composé de couches indépendantes et communicantes entre elles.
 \end{itemize}
 \smallskip
 
 Dans ce travail, l'application respecte les contraintes \textit{REST}. Concernant l'interface uniforme, le protocole \textit{http} a été utilisé. Dans la \textit{Real time database}, les verbes \textit{http} on le sens suivant.
 \smallskip
 \begin{itemize}
-    \item [GET] permet d'acceder à une ressource. Ne modifie pas les ressources.
+    \item [GET] permet d'accéder à une ressource. Ne modifie pas les ressources.
     \item [POST] création d'une ressource dans une liste de données. La base de données génère automatiquement un identifiant unique pour ce nouvel élément.
     \item [PUT] permet d'écrire ou de remplacer une ressource pour une chemin donné.
     \item [PATCH] permet de modifier partiellement une ressource.
@@ -635,13 +634,13 @@ Dans ce contexte, le terme ressource représente toujours un objet JSON.
 
 
 \subsection{REST appliqué à Dart}
-Dans ce projet, plusieurs models on été définit du côté client. Ces models sont extrêmement similaires aux formats JSON qui doivent être respéctés du côté serveur. Ils fonctionnent par doublet, c'est-à-dire, qu'il y a le model qui représente une unité et celui qui représente une liste d'objects. Ces derniers, on déjà été brièvement traités dans la partie \textit{ChangeNotifier}. 
+Dans ce projet, plusieurs models ont été définit du côté client. Ces models sont extrêmement similaires aux formats JSON qui doivent être respectés du côté serveur. Ils fonctionnent par doublet, c'est-à-dire, qu'il y a le model qui représente une unité et celui qui représente une liste d'objets. Ces derniers, ont déjà été brièvement traités dans la partie \textit{ChangeNotifier}. 
 
 Les models: \textit{Waiter}, \textit{Service} et \textit{PoolItem} sont la partie unitaire de \textit{Waiters}, \textit{Services} et \textit{Pool} respectivement.
 
-Leur structure est fonctionnement sont similaires ainsi seul \textit{Service} et \textit{Services} vont être exposés dans ce rapport.
+Leur structure et fonctionnement sont similaires ainsi seul \textit{Service} et \textit{Services} vont être exposés dans ce rapport.
 
-La classe \textit{Service}, comme dit précédement, n'est qu'une implémentation locale de l'objet JSON stocké dans la base de données. Ainsi elle a les attributs suivants:
+La classe \textit{Service}, comme dit précédemment, n'est qu'une implémentation locale de l'objet JSON stocké dans la base de données. Ainsi elle a les attributs suivants:
 \begin{listing}[!h]
 \begin{minted}[fontsize=\scriptsize]{dart}
     class Service implements Comparable<Service> {
@@ -658,9 +657,9 @@ La classe \textit{Service}, comme dit précédement, n'est qu'une implémentatio
 \label{code:servicesClass}
 \end{listing}
 
-Les attributs sont tous finaux. Le traît du bas est la façon en Dart de faire des attributs privés. Chaque objet de cette classe est immutable. Ces objets sont chargé depuis la base de données ou s'ils sont crée en locale, alors il seront envoyés à la base de données pour qu'elle soit mise-à-jour. 
+Les attributs sont tous finaux. Le trait du bas est la façon en Dart de faire des attributs privés. Chaque objet de cette classe est immutable. Ces objets sont chargés depuis la base de données ou s'ils sont créés en local, alors il seront envoyés à la base de données pour qu'elle soit mise-à-jour. 
 
-Il est donc nécéssaires de disposer d'une traduction en JSON dans les deux sens. Voici le constructeur qui permet de construire une instance de Service avec un un JSON en argument.\\
+Il est donc nécessaires de disposer d'une traduction en JSON dans les deux sens. Voici le constructeur qui permet de construire une instance de Service avec un un JSON en argument.\\
 \begin{listing}[!h]
 \begin{minted}[fontsize=\scriptsize]{dart}
 Service.fromJson(Map<String, dynamic> json)
@@ -677,7 +676,7 @@ Service.fromJson(Map<String, dynamic> json)
 \caption{JSON to Service instance}
 \label{code:json2service}
 \end{listing}\\
-Dans \ref{schema:services} il est dit qu'il y a une liste d'ids pour les serveurs et une autre pour les ids des doubleurs. On constate ici que ce n'est pas exactement une liste mais un \textit{map}. En effet, la Real Time database gère les listes comme des pairs \{clef, valeur\} où les clefs sont les indexes de la liste. Le problème est que si l'on modifie ou supprime un élément de la liste, les indexes ne sont pas mis à jour. Il s'est avéré beacoup plus simple d'utiliser \textit{map} car chaque id peut être uniquement accessible et l'ensemble des données reste consistent après modificiations ou suppressions. On voit dans les lignes 6 et 9 de \ref{code:json2service} que seules les clefs, qui représentent les ids, du \textit{map} sont extraites. Les valeurs ne portant aucune information. 
+Dans \autoref{schema:services} il est dit qu'il y a une liste d'ids pour les serveurs et une autre pour les ids des doubleurs. On constate ici que ce n'est pas exactement une liste mais un \textit{map}. En effet, la Real Time Database gère les listes comme des pairs \{clef, valeur\} où les clefs sont les indexes de la liste. Le problème est que si l'on modifie ou supprime un élément de la liste, les indexes ne sont pas mis à jour. Il s'est avéré beaucoup plus simple d'utiliser \textit{map} car chaque id peut être uniquement accessible et l'ensemble des données reste consistent après modificiations ou suppressions. On voit dans les lignes 6 et 9 de \autoref{code:json2service} que seules les clefs, qui représentent les ids, du \textit{map} sont extraites. Les valeurs ne portant aucune information. 
 
 Dans l'autre sens, la traduction d'une instance en objet JSON:
 
@@ -695,8 +694,8 @@ Map<String, dynamic> toJson() => {
 \label{code:service2json}
 \end{listing}
 
-Comme on le voit dans les lignes 5 et 6, les valeurs du \textit{map} sont juste des \textit{true} qui doivent être casté en string en interne.
-Naturellement, JSON est un format qui n'accèpte que du texte. Ainsi, la date est formaté en ISO 8601\footnote{https://www.iso.org/iso-8601-date-and-time-format.html} et on demande la version \textit{toString()} du \textit{\_type}. \textit{\_type} est une instance de la classe \textit{ServiceType} qui \textit{override} a méthode \textit{toString()} présente dans toutes les classes.
+Comme on le voit dans les lignes 5 et 6, les valeurs du \textit{map} sont juste des \textit{true} qui doivent être castés en string en interne.
+Naturellement, JSON est un format qui n'accepte que du texte. Ainsi, la date est formaté en ISO 8601\footnote{https://www.iso.org/iso-8601-date-and-time-format.html} et on demande la version \textit{toString()} du \textit{\_type}. \textit{\_type} est une instance de la classe \textit{ServiceType} qui \textit{override} a méthode \textit{toString()} présente dans toutes les classes.
 \newpage
 \subsection*{GET}
 Maintenant que chaque élément est facilement traduisible en JSON, on peut faire des requêtes à la base de données. Voici comment les services sont chargés en local:
@@ -733,16 +732,16 @@ Future<List<Service>> fetchService(String token) async {
 \label{code:fetchService}
 \end{listing}
 
-la méthode \textit{fetchService} de la classe \textit{Services} (attention au "s") prend un token en argument. Il s'agit d'un paramètre nécéssaire pour l'authentification qui sera traîté plus en détails dans la section suivante. C'est une méthode asynchrone qui dans un future retournera une liste de services. Au travers de \textit{http} qui est un ensemble de classe disponibles dans le package http l'on fait appel à la méthode \textit{http.get} avec l'url des services. L'objet retourné est de type JSON, il faut donc en extraire le corps et le \textit{caster} en \textit{map}.
+la méthode \textit{fetchService} de la classe \textit{Services} (attention au "s") prend un token en argument. Il s'agit d'un paramètre nécessaire pour l'authentification qui sera traîté plus en détails dans la section suivante. C'est une méthode asynchrone qui dans un futur retournera une liste de services. Au travers de \textit{http} qui est un ensemble de classe disponibles dans le package http l'on fait appel à la méthode \textit{http.get} avec l'url des services. L'objet retourné est de type JSON, il faut donc en extraire le corps et le \textit{caster} en \textit{map}.
 
-Après s'être assuré que la réponse contient bel et bien des données, lignes 8 à 11, on extrait les données, en utilisant le constructeur définit dans \ref{code:json2service}, dans la variable loadedData. 
+Après s'être assuré que la réponse contient bel et bien des données, lignes 8 à 11, on extrait les données, en utilisant le constructeur définit dans \autoref{code:json2service}, dans la variable loadedData. 
 
-La Real Time database à cause du format JSON ne garantit pas l'ordre. Ainsi, les services sont triés par date en ordre croissant. D'où l'implémentation de la l'interface \textit{Comparable} que l'on voit dans \ref{code:servicesClass}.
+La Real Time Database à cause du format JSON ne garantit pas l'ordre. Ainsi, les services sont triés par date en ordre croissant. D'où l'implémentation de l'interface \textit{Comparable} que l'on voit dans \autoref{code:servicesClass}.
 
 
 \newpage
 \section{Authentification}
-Afin d'authentifier les requêtes à la base de données, il faut disposer d'un token. Celui-ci s'obtient comme pour créer de nouveau utilisateurs à traves une requête POST à une URL administrateur. Cette requête doit contenir dans son corps, l'email et le mot de passe. Si ceux-ci sont correctes, un token et retourné. 
+Afin d'authentifier les requêtes à la base de données, il faut disposer d'un token. Celui-ci s'obtient comme pour créer de nouveau utilisateurs à travers une requête POST à une URL administrateur. Cette requête doit contenir dans son corps, l'email et le mot de passe. Si ceux-ci sont correctes, un token et retourné. 
 \begin{listing}[!h]
     \begin{minted}[fontsize=\scriptsize]{dart}
 Future<void> _authenticate(String email, String password, String url) async {
