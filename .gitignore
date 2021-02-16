@@ -1,9 +1,15 @@
 
 /_minted*
 /.vscode
+*.bbl
+*.bcf
+*.lof
+*.blg
+*.xml
 *.log
 *.toc
 *.aux
 *.fls
 *.gz
 *.fdb_latexmk
+main.lol
