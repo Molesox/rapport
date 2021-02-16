@@ -41,7 +41,7 @@ Voici un exemple minimal d'un \textit{Hello world} en Dart:
 \subsection{Architecture}
 Pour mieux comprendre les différents éléments de programmation qui vont suivre, il est intéressant de s'attarder
 un peu sur l'architecture interne du framework.
-Flutter a une architecture en couches (\textit{layers}).
+Flutter a une architecture en couches \cite{flutterarchitecture} (\textit{layers}).
 \begin{figure}[!h]
     \begin{center}
         \begin{tikzpicture}
@@ -73,7 +73,7 @@ Le \textit{layer} \textit{material} et \textit{cupertino} sont un ensemble de cl
 de widgets avec respectivement le style material design d'Android et le design propre à IOS.
 
 \subsection{Les widgets}
-Les widgets dans Flutter sont les éléments avec lesquels le programmeur à le plus de contact. Ils sont en effet, le composant principal d'une application
+Les widgets \cite{flutterwidgets} dans Flutter sont les éléments avec lesquels le programmeur à le plus de contact. Ils sont en effet, le composant principal d'une application
 Flutter. Voici un exemple:
 
 \begin{listing}[!h]
@@ -415,7 +415,7 @@ Un autre exemple de \textit{Consumer} est celui de \textit{Auth}. En effet, l'af
 \textit{Auth} est consommé. Si l'utilisateur est authentifié alors on affiche l'écran \textit{Horaires}. Sinon, on essaye de s'auto-connecter. Si l'opération réussi, les \textit{listeners} sont notifiés ce qui implique que cette fonction est appelée à nouveau et à la question \textit{Auth.isAuth} la réponse sera vraie. Si l'opération d'auto-connexion échoue, alors l'écran de \textit{login} est affiché.
 
 \subsection*{Callbacks}
-Un \textit{callback} est par définition une fonction ou méthode qui est donnée en argument à une autre fonction ou méthode. 
+Un \textit{callback} est par définition une fonction ou méthode qui est donnée en argument à une autre fonction ou méthode \cite{callback}. 
 Dans cette application les \textit{callbacks} ont été utilisés pour transmettre une valeur d'un \textit{widget} enfant à son parent sans en changer l'état. 
 
 Prenons, l'exemple de l'écran \textit{Ajouter service} qui va se charger de faire la requête à la base de données avec toutes les information qui permettent d'y ajouter un service. Pour la construction de cet écran, il y a un parent \textit{Statefull widget} : \textit{ScreenAddService} et plusieurs enfants. Parmis ces enfants, seul le \textit{widget} \textit{TypeSelector} sera ilustré. En effet, ils implémentent tous le même mécanisme et les seules variations sont de type graphique.
@@ -469,7 +469,7 @@ Il faut savoir que pour créer de nouveaux utilisateurs, il faut faire une requ�
 
 Dans cette implémentation, les utilisateurs et les serveurs (\textit{waiters}) représentent la même entité.
 
-Une fois que la création de l'utilisateur a réussie et que l'on dispose de son id, une deuxième requête \textit{POST}, cette fois ci, à la base de données, est faite. Cette deuxième requête doit respecter le schéma suivant : 
+Une fois que la création de l'utilisateur a réussie et que l'on dispose de son id, une deuxième requête \textit{POST} \cite{firebaseRest}, cette fois ci, à la base de données, est faite. Cette deuxième requête doit respecter le schéma suivant : 
 
 \begin{listing}[!h]
 \begin{minted}[fontsize=\scriptsize]{json}
@@ -502,7 +502,7 @@ Une fois que la création de l'utilisateur a réussie et que l'on dispose de son
 \end{listing}
 
 
-Les propriétés correspondent aux champs dans \ref{fig:ajout_serveur}. Le \textit{userId} et le numéro d'identification retourné par la première requête \textit{POST}.
+Les propriétés correspondent aux champs dans \ref{fig:ajout_serveur}. Le \textit{userId} et le numéro d'identification retourné par la première requête \textit{POST} \cite{firebaseRest}.
 
 Comme il est uniquement possible d'ajouter des serveurs en étant administrateur et que l'on connait le rôle d'un utilisateur en regardant dans la base de données, il a fallu que le premier serveur soit ajouté manuellement depuis le navigateur.
 \newpage
@@ -547,7 +547,7 @@ Représentent les objets définissant un service. C'est-à-dire, une date, un ty
 
 On constate qu'un service doit au moins avoir un serveur. L'objet \textit{Waiter} n'est pas stocké en tant que tel mais juste le \textit{userId} qui le représente. 
 
-En d'autres termes, les services "ont" des serveurs. Dans un premier temps la relation \textit{many-to-many}, i.e. que les serveurs "aient" eux aussi des services fut envisagée. Cependant, cette pratique est déconseillée dans les bases de données non relationnelles. Ainsi la documentation de Real Time Database conseille d'aplatir les données. 
+En d'autres termes, les services "ont" des serveurs. Dans un premier temps la relation \textit{many-to-many}, i.e. que les serveurs "aient" eux aussi des services fut envisagée. Cependant, cette pratique est déconseillée dans les bases de données non relationnelles. Ainsi la documentation de Real Time Database conseille d'aplatir les données \cite{rtdbstructdata}. 
 \newpage
 \subsection*{Pool}
 Cet objet représente les éléments mis en bourse. Ainsi ils sont créés quand une demande de remplacement ou de doublage est faite. Chacun des élément respect le schéma suivant:
@@ -597,7 +597,7 @@ Cet objet représente les éléments mis en bourse. Ainsi ils sont créés quand
 On voit que dans la base de données, il y a l'attribut \textit{needValidation}. Celui-ci est modifié lorsqu'un remplaçant a été accepté. Le champs \textit{applicantsIds} et \textit{selectedAppId} ne sont pas obligatoires. Ils sont ajoutés seulement lorsque des utilisateurs postulent au service mis en bourse.
 
 \subsection{La méthodologie REST}
-En l'an 2000 Roy Thomas Fielding publie sa thèse \textit{Architectural Styles and the Design of Network-based Software Architectures} qui entre autres définit le standard \textit{Representational State Transfer} élégament abrégé \textit{REST}. Dans cette thèse, M. Fielding fait le constat qu'il existe essentiellement deux façons de concevoir une architecture software:
+En l'an 2000 Roy Thomas Fielding publie sa thèse \textit{Architectural Styles and the Design of Network-based Software Architectures} \cite{restThesis} qui entre autres définit le standard \textit{Representational State Transfer} élégament abrégé \textit{REST}. Dans cette thèse, M. Fielding fait le constat qu'il existe essentiellement deux façons de concevoir une architecture software:
 \begin{itemize}
     \item Tableau blanc où l'architecte donne libre cours à son imagination pour concevoir un système à base de composants qui lui sont familiers.
     \item À partir d'un système donné sans contraintes mais avec des besoins connus où l'architecte va graduellement cerner et appliquer des contraintes au système.  
@@ -695,7 +695,7 @@ Map<String, dynamic> toJson() => {
 \end{listing}
 
 Comme on le voit dans les lignes 5 et 6, les valeurs du \textit{map} sont juste des \textit{true} qui doivent être castés en string en interne.
-Naturellement, JSON est un format qui n'accepte que du texte. Ainsi, la date est formaté en ISO 8601\footnote{https://www.iso.org/iso-8601-date-and-time-format.html} et on demande la version \textit{toString()} du \textit{\_type}. \textit{\_type} est une instance de la classe \textit{ServiceType} qui \textit{override} a méthode \textit{toString()} présente dans toutes les classes.
+Naturellement, JSON est un format qui n'accepte que du texte. Ainsi, la date est formaté en ISO 8601\cite{ISO8601} et on demande la version \textit{toString()} du \textit{\_type}. \textit{\_type} est une instance de la classe \textit{ServiceType} qui \textit{override} a méthode \textit{toString()} présente dans toutes les classes.
 \newpage
 \subsection*{GET}
 Maintenant que chaque élément est facilement traduisible en JSON, on peut faire des requêtes à la base de données. Voici comment les services sont chargés en local:
@@ -761,7 +761,7 @@ Future<void> _authenticate(String email, String password, String url) async {
     \caption{Token request}
     \label{code:authenticate}
     \end{listing}
-Du côté serveur, il faut indiquer que seules les requêtes authentifiées sont permises. La Real Time Database offre un système de règles que l'on peut définir. Voici les règles qui empêchent de lire ou écrire dans la base de données sans s'être authentifié:
+Du côté serveur, il faut indiquer que seules les requêtes authentifiées sont permises. La Real Time Database offre un système de règles que l'on peut définir \cite{rtdbrules}. Voici les règles qui empêchent de lire ou écrire dans la base de données sans s'être authentifié:
 
 \begin{listing}[!h]
     \begin{minted}[fontsize=\scriptsize]{json}
